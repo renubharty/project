@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+<head>
+
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>International Communications-TLCM</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- IE=edge Compatible
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/main.css" type="text/css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="/js/trigger.js"></script>
+
+<!-- Favicons
+	================================================== -->
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
+</head>
+
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<a class="navbar-brand logo" th:href="@{/}"> <img
+				src="images/logo.jpg" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link active"
+						th:href="@{/monitoring}">Monitoring</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Inventory</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/configuration}">Configuration</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Administration</a>
+					</li>
+				</ul>
+
+				<div class="form-inline my-2 my-lg-0">
+					<div class="search-bar">
+						<input class="form-control" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn" type="submit">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+					<!-- 	<div class="header-right">
+						<ul>
+
+
+							<li><a href="#"><i class="fa fa-headphones"></i> Support</a></li>
+							<li><a href="#">Share</a></li>
+							<li><a href="#"><i class="fa fa-question"></i>?</a></li>
+
+
+
+
+
+							<li><a th:text="${user.firstName}"><i class="fa fa-user"></i></a>
+								<table>
+									<tbody th:each="role : ${user.roles}" th:remove="tag">
+										<tr>
+											<div th:switch="${role.name}">
+												<p th:case="ROLE_ADMIN"></p>
+												<p th:case="ROLE_USER"></p>
+
+											</div>
+
+
+											<td th:text="${role.name}">...</td>
+										</tr>
+
+									</tbody>
+								</table></li>
+							<li><a th:href="@{/logout}"><i class="fa fa-logout"></i>Logout</a></li>
+						</ul>
+
+					</div> -->
+
+
+				</div>
+			</div>
+		</nav>
+		<div class="main-nav">
+			<nav class="navbar navbar-expand-lg">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupported2" aria-controls="navbarSupported2"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupported2">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/}">Dashboard</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/problems}">Problems</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Overview</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Web</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Latest
+								data</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Graphs</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Screens</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Maps</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Discovery</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Services</a>
+						</li>
+
+
+					</ul>
+
+
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="main-head group-outer">
+						<h1 class="">Trigger</h1>
+
+						<div class="head-right">
+							<div class="group-box">
+								<div class="form-group">
+									<label for="inputPassword" class="col-form-label">Group</label>
+
+									<select id="rows0.variety" name="groupid" class="form-control">
+										<option selected="selected" value="1">all</option>
+										<option value="2">Linux Servers</option>
+										<option value="3">Templates</option>
+										<option value="4">Templates/Network devices</option>
+										<option value="5">Templates/Operating systems</option>
+										<option value="6">Zabbix servers</option>
+									</select>
+
+								</div>
+
+							</div>
+
+							
+						</div>
+
+
+					</div>
+
+
+
+
+				</div>
+			</div>
+			<aside class="filter-outer">
+				<div class="filter-nav row">
+					<div class="col-sm-12">
+						<ul>
+							<li><a href="#"><i class="fa fa-filter"></i> Filter</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="filter-section">
+
+					<div class="form-group">
+
+						<div class="row filter-form-section">
+							<div class="col-sm-5">
+								<div class="filter-form-inner">
+									<form id="gettrigger">
+										<div class="form-group">
+											<label for="triggerids">Trigger ID:</label> <input
+												type="text" class="form-control" id="triggerids"
+												placeholder="Enter Trigger Id" name="hostids">
+										</div>
+										<div class="form-group">
+											<label for="output">Output:</label> <input type="text"
+												class="form-control" id="output" placeholder="Output Name"
+												name="output">
+										</div>
+										<div class="form-group">
+											<label for="selectFunctions">Function:</label> <input
+												type="text" class="form-control" id="selectFunctions"
+												placeholder="Function Name" name="output">
+										</div>
+
+										<button type="submit" class="btn blue-btn">Submit</button>
+									</form>
+								</div>
+							</div>
+
+						</div>
+
+
+					</div>
+
+				</div>
+			</aside>
+
+			<div class="table-outer">
+				<div class="custom-table table-responsive">
+					<table class="table hosttable" id="location">
+						<thead>
+							<tr>
+
+								<th>Host</th>
+								<th>Hostid</th>
+								<th>Inventory_mode</th>
+								<th>Availability</th>
+								<th>Ipmi_privilege</th>
+								<th>Auto_compress</th>
+								<th>Ipmi_authtype</th>
+								<th>Tls_connect</th>
+							</tr>
+						</thead>
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+
+
+	<!-- All Javascript include here for fast loading of page -->
+<!-- 	<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script> -->
+</body>
+</html>

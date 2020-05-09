@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!--<![endif]-->
+
+<head>
+
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>International Communications-TLCM</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- IE=edge Compatible
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/main.css" type="text/css">
+
+<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<!-- Favicons
+	================================================== -->
+<!-- <link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon/favicon.png"> -->
+</head>
+
+<body>
+
+
+
+
+	<div class="login-container">
+		<div class="login-panel">
+			<div class="login-logo">
+				<img src="images/logo.jpg" />
+			</div>
+
+			<form th:action="@{/login}" method="post">
+				<div th:if="${param.error}">
+					<div class="alert alert-danger">Invalid username or password.</div>
+				</div>
+				<div th:if="${param.logout}">
+					<div class="alert alert-info">You have been logged out.</div>
+				</div>
+
+
+				<fieldset class="form-group">
+					<label for="username">Username</label>: <input id="username"
+						name="username" class="form-control" autofocus="autofocus"
+						type="text">
+				</fieldset>
+
+
+
+				<fieldset class="form-group">
+					<label for="password">Password</label>: <input id="password"
+						name="password" class="form-control" type="password">
+				</fieldset>
+
+
+				<fieldset class="form-group">
+					<input class="custom-check" id="remember" type="checkbox">
+					<label for="remember">Remenber me</label>
+				</fieldset>
+
+
+
+				<fieldset class="form-group">
+					<button class="btn btn-primary signin-btn">Sign in</button>
+				</fieldset>
+			</form>
+		</div>
+
+
+
+
+
+
+		<div class="login-link">
+			<ul>
+				<li><a href="#">Help</a></li>
+				<li><a href="#">Support</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<!-- All Javascript include here for fast loading of page -->
+	<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+</body>
+
+</html>

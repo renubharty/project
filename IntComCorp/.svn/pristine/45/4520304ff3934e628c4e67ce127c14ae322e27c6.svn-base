@@ -1,0 +1,27 @@
+#Spring Profile name
+spring.profiles:prod
+
+#Server port Number
+server.port=8081
+
+# session timeout in second 
+server.servlet.session.timeout=1000
+
+
+#zabbix Server Details in Production Env
+zabbix.username =developer
+zabbix.password =@ICCN2019
+zabbix.server.url =http://178.128.73.40/zabbix/api_jsonrpc.php
+
+
+#MYSQL SCHEMA
+spring.iccn.datasource.jdbcUrl =jdbc:mysql://localhost:3306/intcomcorp_application?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+spring.iccn.datasource.username =root
+spring.iccn.datasource.password =admin
+
+
+
+#MYSQL ZABBIX SERVER SCHEMA
+spring.zabbix.datasource.jdbcUrl=jdbc:mysql://localhost:3306/zabbix
+spring.zabbix.datasource.username=root
+spring.zabbix.datasource.password=admin

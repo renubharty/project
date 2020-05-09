@@ -1,0 +1,170 @@
+$(document)
+		.ready(
+				function() {
+
+					// SUBMIT FORM
+					$("#gethost").submit(function(event) {
+						// Prevent the form from submitting via the browser.
+						event.preventDefault();
+						ajaxGet();
+					});
+
+					function ajaxGet() {
+
+						var hostName = $("#hostNames").val()
+						// DO GET
+						$
+								.ajax({
+
+									type : "GET",
+									contentType : "application/json",
+									url : "zabbixapi/hosts/" + hostName,
+									/* data : JSON.stringify(formData), */
+									dataType : 'json',
+									success : function(data) {
+
+										console.log(data.jsonObject)
+										console.log(data.jsonObject.result[0])
+
+										/*
+										 * var response = result.data
+										 * console.log(response) var resultArray = []
+										 * resultArray = data.jsonObject.result
+										 * console.log(resultArray)
+										 */
+										var trHTML = '';
+										for (var i = 0; i < data.jsonObject.result.length; i++) {
+											trHTML += '<tr><td>'
+													+ data.jsonObject.result[i].host
+													+ '</td><td>'
+													+ data.jsonObject.result[i].hostid
+													+ '</td><td>'
+													+ data.jsonObject.result[i].inventory_mode
+													+ '</td><td>'
+
+													// +
+													// data.jsonObject.result[i].auto_compress
+													// + '</td><td>'
+													+ data.jsonObject.result[i].available
+													+ '</td><td>'
+//													+ data.jsonObject.result[i].description
+//													+ '</td><td>'
+//													// +
+//													// data.jsonObject.result[i].disable_until
+//													// + '</td><td>'
+//													+ data.jsonObject.result[i].error
+//													+ '</td><td>'
+													// +
+													// data.jsonObject.result[i].errors_from
+													// + '</td><td>'
+													+ data.jsonObject.result[i].flags
+													+ '</td><td>'
+
+													// +
+													// data.jsonObject.result[i].ipmi_authtype
+													// + '</td><td>'
+													+ data.jsonObject.result[i].ipmi_available
+													+ '</td><td>'
+													// +
+													// data.jsonObject.result[i].ipmi_disable_until
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].ipmi_error
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].ipmi_errors_from
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].ipmi_password
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].ipmi_privilege
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].ipmi_username
+													// + '</td><td>'
+													+ data.jsonObject.result[i].jmx_available
+													+ '</td><td>'
+													// +
+													// data.jsonObject.result[i].jmx_disable_until
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].jmx_error
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].jmx_errors_from
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].lastaccess
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].maintenance_from
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].maintenance_status
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].maintenance_type
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].maintenanceid
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].name
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].proxy_address
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].proxy_hostid
+													// + '</td><td>'
+													+ data.jsonObject.result[i].snmp_available
+													+ '</td><td>'
+													// +
+													// data.jsonObject.result[i].snmp_disable_until
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].snmp_error
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].snmp_errors_from
+													// + '</td><td>'
+													+ data.jsonObject.result[i].status
+													+ '</td><td>'
+													+ data.jsonObject.result[i].templateid
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].tls_accept
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].tls_connect
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].tls_issuer
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].tls_psk
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].tls_psk_identity
+													// + '</td><td>'
+													// +
+													// data.jsonObject.result[i].tls_subject
+
+													+ '</td></tr>';
+
+										}
+										console.log("response: ",
+												data.jsonObject.result);
+										$('#location').append(trHTML);
+
+									},
+									error : function(e) {
+										alert("Error!")
+										console.log("ERROR: ", e);
+									}
+								});
+
+					}
+
+				})

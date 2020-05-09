@@ -1,0 +1,7 @@
+#Spring Active Profile Name
+#spring.profiles.active=qa
+
+spring.profiles.active=devp
+spring.main.allow-bean-definition-overriding=true
+
+

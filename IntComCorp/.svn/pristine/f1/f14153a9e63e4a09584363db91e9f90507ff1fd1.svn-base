@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>International Communications-TLCM</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- IE=edge Compatible
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/main.css" type="text/css">
+
+<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<!-- Favicons
+	================================================== -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon/favicon.png">
+</head>
+
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<a class="navbar-brand logo" href="#"> <img src="images/logo.jpg" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link active"
+						th:href="@{/monitoring}">Monitoring</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Inventory</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Configuration</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Administration</a>
+					</li>
+				</ul>
+
+				<div class="form-inline my-2 my-lg-0">
+					<div class="search-bar">
+						<input class="form-control" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn" type="submit">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+					<div class="header-right">
+						<ul>
+							<li><a href="#"><i class="fa fa-headphones"></i> Support</a></li>
+							<li><a href="#">Show</a></li>
+							<li><a href="#"><i class="fa fa-question"></i></a></li>
+							<li><a href="#"><i class="fa fa-user"></i></a></li>
+							<li><a href="#"><i class="fa fa-power-off"></i></a></li>
+						</ul>
+					</div>
+
+
+				</div>
+			</div>
+		</nav>
+		<div class="main-nav">
+			<nav class="navbar navbar-expand-lg">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupported2" aria-controls="navbarSupported2"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupported2">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="#">Dashboard</a>
+						</li>
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/problems}">Problams</a></li>
+
+						<li class="nav-item"><a class="nav-link" href="#">Host</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Overview</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Web</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Data</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Graphs</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Screen</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Maps</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Discovery</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Services</a>
+						</li>
+
+
+					</ul>
+
+
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+	<section class="wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="main-head group-outer">
+						<h1 class="">Hosts</h1>
+						<div class="head-right">
+							<div class="group-box">
+								<div class="form-group">
+									<label for="inputPassword" class="col-form-label">Group</label>
+
+									<select class="form-control">
+										<option>all</option>
+									</select>
+
+								</div>
+							</div>
+							<button class="btn blue-btn">Create Host</button>
+							<button class="btn blue-btn">Import</button>
+						</div>
+					</div>
+					<!--
+                    <div class="bread-crumb">
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">All Hosts</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">0010</li>
+                          </ol>
+                        </nav>
+                    </div>
+-->
+
+
+
+				</div>
+			</div>
+			<aside class="filter-outer">
+				<div class="filter-nav row">
+					<div class="col-sm-12">
+						<ul>
+							<li><a href="#"><i class="fa fa-filter"></i> Filter</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="filter-section">
+					<div class="">
+						<div class="row filter-form-section">
+							<div class="col-sm-5">
+								<div class="filter-form-inner">
+									<div class="form-group row pr-5">
+										<label class="col-sm-2 col-form-label">Name</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id=""
+												placeholder="">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Templeses</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control temp-input" id=""
+												placeholder="">
+											<button type="button" class="btn select-btn">Select</button>
+										</div>
+									</div>
+
+									<div class="form-group row pr-5">
+										<label class="col-sm-2 col-form-label">DNS</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id=""
+												placeholder="">
+										</div>
+									</div>
+									<div class="form-group row pr-5">
+										<label class="col-sm-2 col-form-label">Port</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id=""
+												placeholder="">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-7">
+								<div class="filter-form-inner">
+									<div class="form-group row ">
+										<label class="col-sm-4 col-form-label">Montored by</label>
+										<div class="col-sm-8">
+											<div class="server-btn">
+												<ul>
+													<li><a href="#" class="active">Ard</a></li>
+													<li><a href="#" class="">Server</a></li>
+													<li><a href="#" class="">Proxy</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group row ">
+										<label class="col-sm-4 col-form-label">Tags</label>
+										<div class="col-sm-8">
+											<input type="password" class="form-control temp-input" id=""
+												placeholder="">
+											<button type="button" class="btn select-btn">Select</button>
+										</div>
+									</div>
+
+									<div class="form-group row ">
+										<label class="col-sm-4 col-form-label">Tags</label>
+										<div class="col-sm-8">
+											<div class="server-btn">
+												<ul>
+													<li><a href="#" class="active">Ard</a></li>
+													<li><a href="#" class="">Or</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group row ">
+										<label class="col-sm-4 col-form-label"></label>
+										<div class="col-sm-8">
+											<div class="browse-section">
+												<input type="password" class="form-control" id=""
+													placeholder="Tag">
+												<div class="server-btn">
+													<ul>
+														<li><a href="#" class="active">Cotains</a></li>
+														<li><a href="#" class="">Equals</a></li>
+													</ul>
+												</div>
+												<input type="password" class="form-control" id=""
+													placeholder="Value">
+											</div>
+										</div>
+									</div>
+
+
+
+								</div>
+							</div>
+
+
+
+
+						</div>
+						<div class="row">
+							<div class="col-sm-12 text-center mt-2">
+								<button type="button" class="btn blue-btn">Apply</button>
+								<button type="button" class="btn reset-btn">Reset</button>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+			</aside>
+			<div class="table-outer">
+				<div class="custom-table table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									<div class="">
+										<input class="custom-check" id="remember" type="checkbox">
+										<label for="remember">&nbsp;</label>
+									</div>
+								</th>
+								<th>Name</th>
+								<th>Application</th>
+								<th>Host</th>
+								<th>Triggers</th>
+								<th>Graphs</th>
+								<th>Discovery</th>
+								<th>Web</th>
+								<th>Proxy</th>
+								<th>Templates</th>
+								<th>Status</th>
+								<th>Availability</th>
+								<!--                                            <th>Info</th>-->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check" type="checkbox">
+										<label for="check">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check1" type="checkbox">
+										<label for="check1">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check2" type="checkbox">
+										<label for="check2">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check3" type="checkbox">
+										<label for="check3">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-danger">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check4" type="checkbox">
+										<label for="check4">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check5" type="checkbox">
+										<label for="check5">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check6" type="checkbox">
+										<label for="check6">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check7" type="checkbox">
+										<label for="check7">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-danger">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check8" type="checkbox">
+										<label for="check8">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-danger">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check9" type="checkbox">
+										<label for="check9">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check10" type="checkbox">
+										<label for="check10">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+							<tr>
+								<td>
+									<div>
+										<input class="custom-check" id="check11" type="checkbox">
+										<label for="check11">&nbsp;</label>
+									</div>
+								</td>
+								<td>David Right</td>
+								<td>Application 1</td>
+								<td>Host 250</td>
+								<td>Triggers 20</td>
+								<td>Graph 12</td>
+								<td>Discovery 4</td>
+								<td>Web</td>
+								<td>05-26-2020</td>
+								<td>Lorem Ipsum is simply dummy text of the printing and
+									typesetting</td>
+								<td class="green">Enable</td>
+								<td class="badge-btn"><span class="badge badge-light">26X</span>
+									<span class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+								<!--
+                                         <td class="badge-btn">
+                                            <span class="badge badge-success">NONE</span>
+                                         </td>
+-->
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+
+
+	<!-- All Javascript include here for fast loading of page -->
+	<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+</body>
+
+</html>

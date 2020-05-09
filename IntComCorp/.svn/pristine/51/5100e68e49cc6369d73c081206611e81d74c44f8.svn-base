@@ -1,0 +1,9 @@
+package com.intcomcorp.intcomcorpApplication.zabbix.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.intcomcorp.intcomcorpApplication.zabbix.model.Test;
+
+public interface TestRepo extends JpaRepository<Test, Integer> {
+
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Result</h2>
+	<div class="my-3">
+		<p>
+			<strong>HostName:</strong> <span th:text="${hostCreate.hostName}"></span>
+		</p>
+		<p>
+			<strong>Type:</strong> <span th:text="${hostCreate.type}"></span>
+		</p>
+		<p>
+			<strong>Main:</strong> <span th:text="${hostCreate.main}"></span>
+		</p>
+		<p>
+			<strong>Use IP:</strong> <span th:text="${hostCreate.useip}"></span>
+		</p>
+		<p>
+			<strong>IP:</strong> <span th:text="${hostCreate.iP}"></span>
+		</p>
+		<p>
+			<strong>Port:</strong> <span th:text="${hostCreate.port}"></span>
+		</p>
+		<p>
+			<strong>Groups:</strong> <span th:text="${hostCreate.groups}"></span>
+		</p>
+		<p>
+			<strong>Template:</strong> <span th:text="${hostCreate.template} "></span>
+		</p>
+		<p>
+			<strong>HostMacro:</strong> <span th:text="${hostCreate.hostMacro}"></span>
+		</p>
+	</div>
+	<a th:href="@{/zabbix/hosts/createhost}">Add new host</a>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Host</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="/js/host.js"></script>
+</head>
+<body>
+	
+
+	<div class="container">
+		<h2>Host get</h2>
+		<form id="gethost">
+			<div class="form-group">
+				<label for="hostNames">Host Name:</label> <input type="text"
+					class="form-control" id="hostNames" placeholder="Enter Host Name"
+					name="hostNames">
+			</div>
+			
+
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		<br />
+	</div>
+	<table id="location" border='1'>
+		<tr>
+			<th>Macro</th>
+			<th>HostMacroid</th>
+			<th>Value</th>
+		</tr>
+	</table>
+</body>
+</html>

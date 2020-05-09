@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>International Communications-TLCM</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- IE=edge Compatible
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/main.css" type="text/css">
+
+<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<!-- Favicons
+	================================================== -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon/favicon.png">
+</head>
+
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<a class="navbar-brand logo" th:href="@{/}"> <img
+				src="images/logo.jpg" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"
+						href="@{/monitoring}">Monitoring</a></li>
+					<li class="nav-item"><a class="nav-link" href="@{/inventory}">Inventory</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="@{/reports}">Reports</a>
+					</li>
+					<li class="nav-item"><a class="nav-link active"
+						th:href="@{/configuration}">Configuration</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="@{/administration}">Administration</a></li>
+				</ul>
+
+				<div class="form-inline my-2 my-lg-0">
+					<div class="search-bar">
+						<input class="form-control" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn" type="submit">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				<!-- 	<div class="header-right">
+						<ul>
+							<li><a href="#"><i class="fa fa-headphones"></i> Support</a></li>
+							<li><a href="#">Share</a></li>
+							<li><a href="#"><i class="fa fa-question"></i>?</a></li>
+							<li><a th:href="@{/user}"><i class="fa fa-user"></i></a>User</li>
+							<li><a th:href="@{/logout}"><i class="fa fa-logout"></i>Logout</a></li>
+						</ul>
+
+					</div> -->
+
+
+				</div>
+			</div>
+		</nav>
+		<div class="main-nav">
+			<nav class="navbar navbar-expand-lg">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupported2" aria-controls="navbarSupported2"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupported2">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link active" th:href="@{/}">Dashboard</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/problems}">Problems</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Overview</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Web</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Latest data</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Graphs</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Screens</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Maps</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Discovery</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Services</a>
+						</li>
+
+
+					</ul>
+
+
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+	<section class="wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="main-head group-outer">
+						<h1 class="">Hosts</h1>
+						<div class="head-right">
+							<div class="group-box">
+								<div class="form-group">
+									<label for="inputPassword" class="col-form-label">Group</label>
+
+									<select id="rows0.variety" name="rows[0].variety"
+										class="form-control">
+										<option selected="selected" value="1">all</option>
+										<option value="2">Linux Servers</option>
+										<option value="3">Templates</option>
+										<option value="4">Templates/Network devices</option>
+										<option value="5">Templates/Operating systems</option>
+										<option value="5">Zabbix servers</option>
+									</select>
+
+								</div>
+							</div>
+							<button class="btn blue-btn">Create Host</button>
+							<button class="btn blue-btn">Import</button>
+						</div>
+					</div>
+					<!--
+                    <div class="bread-crumb">
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">All Hosts</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">0010</li>
+                          </ol>
+                        </nav>
+                    </div>
+-->
+
+
+
+				</div>
+			</div>
+			<aside class="filter-outer">
+				<div class="filter-nav row">
+					<div class="col-sm-12">
+						<ul>
+							<li><a href="#"><i class="fa fa-filter"></i> Filter</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="filter-section">
+					<div class="">
+						<div class="row filter-form-section">
+							<div class="col-sm-5">
+								<div class="filter-form-inner">
+									<div class="form-group row pr-5">
+										<label class="col-sm-2 col-form-label">Name</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id=""
+												placeholder="">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Templates</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control temp-input" id=""
+												placeholder="">
+											<button type="button" class="btn select-btn">Select</button>
+										</div>
+									</div>
+
+									<div class="form-group row pr-5">
+										<label class="col-sm-2 col-form-label">DNS</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id=""
+												placeholder="">
+										</div>
+									</div>
+									<div class="form-group row pr-5">
+										<label class="col-sm-2 col-form-label">Port</label>
+										<div class="col-sm-10">
+											<input type="password" class="form-control" id=""
+												placeholder="">
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+						</div>
+						<div class="row">
+							<div class="col-sm-12 text-center mt-2">
+								<button type="button" class="btn blue-btn">Apply</button>
+								<button type="button" class="btn reset-btn">Reset</button>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+			</aside>
+			<div class="table-outer">
+				<div class="custom-table table-responsive">
+					<table class="table hosttable">
+						<thead>
+							<tr>
+								<th>
+									<div class="">
+										<input class="custom-check" id="remember" type="checkbox">
+										<label for="remember">&nbsp;</label>
+									</div>
+								</th>
+								<th>Name</th>
+								<th>Application</th>
+								<th>Items</th>
+								<th>Triggers</th>
+								<th>Graphs</th>
+								<th>Discovery</th>
+								<th>Web</th>
+								<th>Interface</th>
+								<th>Proxy</th>
+								<th>Templates</th>
+								<th>Status</th>
+								<th>Availability</th>
+								<th>Agent encryption</th>
+								<th>Info</th>
+								<th>Tags</th>
+
+							</tr>
+						</thead>
+						<tbody>
+
+
+
+
+
+							<tr th:each="host : ${host}">
+								<td>
+									<div>
+										<input class="custom-check" id="check6" type="checkbox">
+										<label for="check6">&nbsp;</label>
+									</div>
+								</td>
+								<td th:text="${host.name}">David Right</td>
+								<td th:text="${host.application}">Application 1</td>
+								<td th:text="${host.items}">Host 250</td>
+								<td th:text="${host.triggers}">Triggers 20</td>
+								<td th:text="${host.graphs}">Graph 12</td>
+								<td th:text="${host.discovery}">Discovery 4</td>
+								<td th:text="${host.web}">Web</td>
+								<td th:text="${host.interface}">05-26-2020</td>
+								<td th:text="${host.proxy}">Lorem Ipsum is simply dummy
+									text of the printing and typesetting</td>
+								<td th:text="${host.templates}" class="green">Enable</td>
+								<td th:text="${host.status}" class="badge-btn"><span
+									class="badge badge-light">26X</span> <span
+									class="badge badge-success">SNMP</span> <span
+									class="badge badge-light">JMX</span></td>
+
+								<td th:text="${host.availability}" class="badge-btn"><span
+									class="badge badge-success">NONE</span></td>
+								<td th:text="${host.agentencryption}">David Right</td>
+								<td th:text="${host.info}">David Right</td>
+								<td th:text="${host.tags}">David Right</td>
+							</tr>
+
+
+
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+
+
+	<!-- All Javascript include here for fast loading of page -->
+	<!-- <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script> -->
+
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"
+		integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+		crossorigin="anonymous"></script>
+
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
