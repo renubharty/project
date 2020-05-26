@@ -36,13 +36,13 @@
 
 <!-- Favicons
 	================================================== -->
-<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
+<!-- <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png"> -->
 </head>
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}"> <img
-				src="images/logo.jpg" />
+			<a class="navbar-brand logo" th:href="@{/}"> <!-- <img
+				src="images/logo.jpg" /> -->
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -55,14 +55,14 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link active"
 						th:href="@{/monitoring}">Monitoring</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Inventory</a>
+					<li class="nav-item"><a class="nav-link" th:href="@{/inventory}">Inventory</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/configuration}">Configuration</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Administration</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/administration}">Administration</a></li>
 				</ul>
 
 				<div class="form-inline my-2 my-lg-0">
@@ -122,14 +122,12 @@
 				<div class="collapse navbar-collapse" id="navbarSupported2">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/organization}">Organization</a></li>
+							th:href="@{/organization}">Distributor</a></li>
 						<li class="nav-item"><a class="nav-link"
 							th:href="@{/authentication}">Authentication</a></li>
-						<li class="nav-item"><a class="nav-link" href="@{/users}">Users</a></li>
-						<li class="nav-item"><a class="nav-link" href="@{/authentication}">User
-								groups</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/reseller}">Resellers
-						</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/users}">Users</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/reseller}">Resellers </a></li>
 
 
 

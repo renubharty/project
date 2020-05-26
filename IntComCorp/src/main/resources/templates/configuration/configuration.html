@@ -61,7 +61,7 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/monitoring}">Monitoring</a></li>
-					<li class="nav-item"><a class="nav-link" href="@{/inventory}">Inventory</a>
+					<li class="nav-item"><a class="nav-link" th:href="@{/inventory}">Inventory</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="@{/reports}">Reports</a>
 					</li>
@@ -125,6 +125,8 @@
 						</li>
 						<li class="nav-item"><a class="nav-link" href="@{/services}">Services</a>
 						</li>
+                         <li class="nav-item"><a class="nav-link active"
+							th:href="@{/host/show}">Assign Host</a></li>
 
 
 					</ul>
@@ -226,9 +228,18 @@
 								<th>Auto_compress</th>
 								<th>Ipmi_authtype</th>
 								<th>Tls_connect</th>
+
+								<th>Delete</th>
 							</tr>
 						</thead>
 
+						<!-- <tbody>
+
+							<td><a th:href="@{/zabbixapi/hosts/{hostids}(hostids=${host.hostid})}"
+								class="btn btn-primary"><i class="fas fa-host-times ml-2"></i></a></td>
+
+
+						</tbody> -->
 					</table>
 				</div>
 			</div>

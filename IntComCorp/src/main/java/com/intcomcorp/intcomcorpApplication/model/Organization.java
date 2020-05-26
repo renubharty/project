@@ -1,7 +1,8 @@
 package com.intcomcorp.intcomcorpApplication.model;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,9 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -21,7 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "Organization_tab")
+@Table(name = "Organization")
 @Entity
 @Getter
 @Setter
@@ -45,15 +46,10 @@ public class Organization {
 	@Email(message = "Email should be in proper format")
 	@NotEmpty
 	private String email;
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "org_reseller", joinColumns = {
-			@JoinColumn(name = "org_id", referencedColumnName = "id", nullable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "reseller_id", referencedColumnName = "id", nullable = false) })
+	@ManyToMany(mappedBy = "orgSet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Reseller> resSet = new HashSet<>();
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "org_roles", joinColumns = @JoinColumn(name = "org_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-	private Collection<Role> roles;
+	@OneToMany(mappedBy = "org", fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
+	private List<Inventory> inventoryList = new ArrayList<>();
 	
 	public Organization(Organization org) {
 		this.id = org.getId();

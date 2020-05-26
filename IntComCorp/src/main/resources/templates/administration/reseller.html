@@ -13,7 +13,7 @@
 <title>International Communications-TLCM</title>
 <meta name="description" content="">
 <meta name="author" content="">
-
+   
 <!-- Mobile Specific Metas
   ================================================== -->
 <meta name="viewport"
@@ -22,11 +22,14 @@
   ================================================== -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<!-- CSS
+<!-- CSS   
   ================================================== -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/main.css" type="text/css">
+<link rel="stylesheet" href="/css/bootstrap-select.css" type="text/css">
+
+
 
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,24 +37,87 @@
 
 <!-- Favicons
 	================================================== -->
-<link rel="icon" type="image/png" sizes="16x16"
-	href="images/favicon/favicon.png">
+<!-- <link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon/favicon.png"> -->
 </head>
 
 
 <body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<a class="navbar-brand logo" th:href="@{/}"> <!-- <img
+				src="images/logo.jpg" /> -->
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link active"
+						th:href="@{/monitoring}">Monitoring</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Inventory</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/configuration}">Configuration</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/administration}">Administration</a></li>
+				</ul>
+
+				<div class="form-inline my-2 my-lg-0">
+					<div class="search-bar">
+						<input class="form-control" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn" type="submit">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+
+
+
+				</div>
+			</div>
+		</nav>
+		<div class="main-nav">
+			<nav class="navbar navbar-expand-lg">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupported2" aria-controls="navbarSupported2"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupported2">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/reseller/get}">View Reseller</a></li>
+
+
+
+
+
+
+					</ul>
+
+
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+
+
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<div class="navbar-header">
-				<!-- <button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button> -->
-				<!-- <a class="navbar-brand" href="#" th:href="@{/administration}"> </a> -->
-			</div>
+			<div class="navbar-header"></div>
 		</div>
 	</nav>
 
@@ -63,7 +129,8 @@
 			<div class="col-md-6 col-md-offset-3">
 
 				<h1>Reseller</h1>
-				<form th:action="@{/reseller}" th:object="${reseller}" method="post">
+				<form th:action="@{/reseller/add}" th:object="${reseller}"
+					method="post">
 					<h2>
 						<span class="alert-success" th:utext="${successMsg}"></span>
 					</h2>
@@ -129,13 +196,15 @@
 
 					</div>
 
-					<div class="form-group blu-margin">
-						<select class="form-control" th:field="${reseller.organization}"
-							id="dropOperator">
+					<div class="form-group ">
+						<label for=""orgDropDown"">Select Distributor</label> <select
+							class="form-control selectpicker" th:field="${reseller.orgIds}"
+							id="orgDropDown" size="10" multiple="multiple">
 							<option value="0">select organization</option>
 							<option th:each="organization : ${orgList}"
 								th:value="${organization.id}" th:text="${organization.name}"></option>
-						</select>
+						</select> <span th:if="${#fields.hasErrors('orgIds')}"
+							th:errors="*{orgIds}" class="text-danger"></span>
 					</div>
 
 					<div class="form-group">
@@ -149,10 +218,11 @@
 	</div>
 
 	<!-- All Javascript include here for fast loading of page -->
-	<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
-	<script type="text/javascript" src="js/popper.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/custom.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="/js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/custom.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
 </body>
 </html>

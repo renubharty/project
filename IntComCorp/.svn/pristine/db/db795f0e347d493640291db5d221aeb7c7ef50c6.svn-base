@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "spring.iccn.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.intcomcorp.intcomcorpApplication.config.IccnDBConfig",
+      "sourceMethod": "dataSource()"
+    },
+    {
+      "name": "spring.zabbix.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.intcomcorp.intcomcorpApplication.config.ZabbixDBConfig",
+      "sourceMethod": "dataSource()"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

@@ -1,10 +1,11 @@
 package com.intcomcorp.intcomcorpApplication.model;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -23,7 +25,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Reseller_TAB")
+@Table(name = "reseller")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -47,15 +49,24 @@ public class Reseller {
 	@Email(message = "Email shoul be in proper format")
 	@NotEmpty
 	private String email;
-	@NotEmpty
+	
+	@Column(length = 32 ,name = "active")
+	private boolean isActive = true;
 	@Transient
-	private String organization;
+	private List<String> orgIds;
 
-	@ManyToMany(mappedBy = "resSet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	//@ManyToMany(mappedBy = "resSet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "org_reseller", joinColumns = {
+			@JoinColumn(name = "reseller_id", referencedColumnName = "id", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "org_id", referencedColumnName = "id", nullable = false) })
 	Set<Organization> orgSet = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "reseller_roles", joinColumns = @JoinColumn(name = "reseller_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-	private Collection<Role> roles;
+	
+	/*
+	 * @OneToMany(mappedBy = "reseller", fetch = FetchType.EAGER, cascade =
+	 * CascadeType.ALL) private Set<Inventory> inventorySet = new HashSet<>();
+	 */
 
 }

@@ -30,7 +30,7 @@ public class ZabbixApiHostService {
 	 */
 	public ResponseEntity<?> hostsDetails(String[] hosts) {
 		JSONObject response = null;
-		if (initializerService.loginValidate()) {
+	if (initializerService.loginValidate()) {
 			Request request = RequestBuilder.newBuilder().method("host.get").paramEntry("filter", hosts).build();
 			response = initializerService.zabbixApi.call(request);
 

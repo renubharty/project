@@ -1,7 +1,9 @@
 package com.intcomcorp.intcomcorpApplication.service.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import com.intcomcorp.intcomcorpApplication.model.User;
 import com.intcomcorp.intcomcorpApplication.service.UserService;
 
 @Service
+
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -59,5 +62,42 @@ public class UserServiceImpl implements UserService {
 	
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+	}
+	
+	public List<User> getAllCustomer(){
+		List<User> custList =	userRepository.findAll();
+		List<User> filteredList =  new ArrayList<User>();
+		 custList.forEach(cust ->{
+			cust.getRoles().forEach(role ->{
+				
+				if (role.getName().equalsIgnoreCase("ROLE_USER")) {
+					filteredList.add(cust);
+				}
+			});
+		});
+
+		return filteredList;
+		}
+	
+	
+	public List<User> getAllCustomerByHost(){
+		List<User> custList =	userRepository.findAll();
+		List<User> filteredList =  new ArrayList<User>();
+		 custList.forEach(cust ->{
+			
+			 if (!cust.getUsersHostList().isEmpty()) {
+				 filteredList.add(cust);
+			 }
+		});
+
+		return filteredList;
+		}
+	
+	
+	public User getUserById(Long id) {
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+		return user;
+
 	}
 }

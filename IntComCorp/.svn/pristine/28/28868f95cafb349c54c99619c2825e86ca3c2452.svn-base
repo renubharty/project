@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>User Macro</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="/js/usermacros.js"></script>
+</head>
+<body>
+	
+
+	<div class="container">
+		<h2>User Macro form</h2>
+		<form id="getmacro">
+			<div class="form-group">
+				<label for="hostids">Host ID:</label> <input type="text"
+					class="form-control" id="hostids" placeholder="Enter Host Id"
+					name="hostids">
+			</div>
+			<div class="form-group">
+				<label for="output">Output Name:</label> <input type="text"
+					class="form-control" id="output" placeholder="Output Name"
+					name="output">
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		<br />
+	</div>
+	<table id="location" border='1'>
+		<tr>
+			<th>Macro</th>
+			<th>HostMacroid</th>
+			<th>HostId</th>
+		</tr>
+	</table>
+</body>
+</html>

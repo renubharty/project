@@ -1,7 +1,9 @@
 package com.intcomcorp.intcomcorpApplication.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,14 @@ public class OrganizationServiceimpl  {
 	Optional<Organization> org = 	organizationRepository.findById(orgId);
 		
 		return org.map(Organization :: new).get();
+	}
+	
+	public Set<Organization> getOrgListByIds(List<String> orgIds) {
+		Set<Organization> orgList = new HashSet<Organization>();
+		orgIds.forEach(id -> {
+			orgList.add(findById(Long.parseLong(id)));
+		});
+		return orgList;
 	}
 
 
