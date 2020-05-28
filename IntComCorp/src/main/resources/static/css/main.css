@@ -107,7 +107,7 @@ body {
 	font-weight: normal;
 	font-style: normal;
     color:#464647;
-    background:rgba(230,230,230,0.9) !important;
+    /*background:rgba(230,230,230,0.9) !important;*/
 }
  ol,
     ul {
@@ -511,6 +511,19 @@ header .main-nav .navbar-expand-lg .navbar-nav .nav-link:hover:after {
 
 
 
+.is-shady{
+	box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+}
+
+.bootstrap-select.form-control {
+    border: 1px solid #ced4da !important;
+}
+
+.bootstrap-select > .dropdown-toggle{
+	background-color: #fff !important;
+}
+
+
 
 /*Start Media Query --- Please put all respective media queries in bottom of this page*/
 
@@ -572,3 +585,39 @@ header .main-nav .navbar-expand-lg .navbar-nav .nav-link:hover:after {
 @media screen and (max-width: 480px) {}
 
 @media screen and (max-width: 320px) {}
+
+
+
+	.inner-box {
+    box-shadow: 1px 1px 10px #fff;
+    background: #fff;
+    padding: 20px;
+}
+.head-txt{
+
+font-size: 30px;
+    padding-bottom: 15px;
+}
+.cst-height{
+
+	
+	height:45px;
+}
+
+.cst-btn-bg {
+    background: #114567;
+    border-color: #114567;
+}
+
+.thead-bg tr th{
+	
+	background: #114567;
+    color: #fff !important;
+}
+a.btn.btn-primary.round-btn-clc {
+    border-radius: 50%;
+    width: 41px;
+    height: 41px;
+    font-size: 20px;
+    padding: 3px 0;
+}

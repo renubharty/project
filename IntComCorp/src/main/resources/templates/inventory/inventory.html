@@ -115,15 +115,13 @@
 			<div class="navbar-header"></div>
 		</div>
 	</nav>
-
-	<br>
-	<br>
+<br>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 
-				<h1>Inventory</h1>
+				<h1 class="head-txt">Inventory</h1>
 				<form th:action="@{/inventory/add}" th:object="${inventory}"
 					method="post">
 					<h2>
@@ -135,7 +133,7 @@
 					<div class="form-group ">
 						<label for="type" class="col-form-label">Type</label> <select
 							id="type" name="type" class="form-control">
-							<option selected="selected" value="Tv Whitespace">Tv Whitespace</option>
+							<option selected="selected" value="TV Whitespace">TV Whitespace</option>
 							<option value="Router">Router</option>
 							<option value="Gateway">Gateway</option>
 							<option value="Linux Server">Linux Server</option>
@@ -201,7 +199,7 @@
 					</div> -->
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-success">Submit</button>
+						<button type="submit" class="btn btn-primary btn-block cst-btn-bg">Submit</button>
 
 					</div>
 

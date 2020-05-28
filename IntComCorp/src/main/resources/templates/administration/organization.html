@@ -24,9 +24,9 @@
 
 <!-- CSS
   ================================================== -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/main.css" type="text/css">
+<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/main.css" type="text/css">
 
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -36,13 +36,18 @@
 	================================================== -->
 <!-- <link rel="icon" type="image/png" sizes="16x16"
 	href="images/favicon/favicon.png"> -->
+	
+	<style>
+	
+
+	</style>
 </head>
 
 
 <body>
 
 	<header>
-		<nav class="navbar navbar-expand-lg">
+		<nav class="navbar navbar-expand-lg ">
 			<a class="navbar-brand logo" th:href="@{/}"> <!-- <img
 				src="images/logo.jpg" /> -->
 			</a>
@@ -82,7 +87,7 @@
 			</div>
 		</nav>
 		<div class="main-nav">
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg cst-height">
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupported2" aria-controls="navbarSupported2"
@@ -121,13 +126,14 @@
 		</div>
 	</nav>
 
-	<br>
-	<br>
+<br>
+	
 
 	<div class="container">
+	<div class="inner-box">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<h1>Distributor</h1>
+			<div class="col-md-6">
+				<h1 class="head-txt">Distributor</h1>
 				<form th:action="@{/organization}" th:object="${organizationDto}"
 					method="post">
 					<h2>
@@ -136,6 +142,8 @@
 					<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
 						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
 						error</p>
+						
+					
 
 					<div class="form-group ">
 						<label for="name" class="col-form-label">Name</label> <input
@@ -198,13 +206,13 @@
 
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-success">Submit</button>
+						<button type="submit" class="btn btn-primary btn-block cst-btn-bg">Submit</button>
 
 					</div>
-
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	<!-- All Javascript include here for fast loading of page -->

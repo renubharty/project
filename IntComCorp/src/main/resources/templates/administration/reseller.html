@@ -85,7 +85,7 @@
 			</div>
 		</nav>
 		<div class="main-nav">
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg cst-height">
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupported2" aria-controls="navbarSupported2"
@@ -122,13 +122,13 @@
 	</nav>
 
 	<br>
-	<br>
 
 	<div class="container">
+	<div class="inner-box">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-6">
 
-				<h1>Reseller</h1>
+				<h1 class="head-txt">Reseller</h1>
 				<form th:action="@{/reseller/add}" th:object="${reseller}"
 					method="post">
 					<h2>
@@ -208,13 +208,14 @@
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-success">Submit</button>
+						<button type="submit" class="btn btn-block btn-primary cst-btn-bg">Submit</button>
 
 					</div>
 
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	<!-- All Javascript include here for fast loading of page -->

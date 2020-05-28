@@ -38,7 +38,7 @@ public class HostService {
 	
 	   
 	   
-	public Map<Integer, Host> getAllZabbixHost() {
+	public Map<Integer, Host> getAllZabbixHost(boolean isRemove) {
 		Gson gson=new Gson();
 		JsonParser parser;
         JsonElement element;
@@ -62,16 +62,15 @@ public class HostService {
 		  }
 		
 		List<Host> assignHost = hostRepository.findAll();// hostRepository.findAll();
-	//	assignHost.add(new Host("Test Device", 1014));
 		Map<Integer, Host> zabbixHostMap = hostList.stream()
 				.collect(Collectors.toMap(Host::getHostId, Function.identity()));
 
+	if (isRemove)	{
+	assignHost.forEach(host -> {
+			zabbixHostMap.remove(host.getHostId());
+		});
 		
-//		assignHost.forEach(host -> {
-//			zabbixHostMap.remove(host.getHostId());
-//		});
-		
-		
+	}	
 		return zabbixHostMap;
 	}
 
@@ -88,19 +87,51 @@ public class HostService {
 	}
 
 	public void assignHost(Map<Integer, Host> zabbixHostMap, UserHostsDto userHostDto) {
-		
-		userHostDto.getHostIds().forEach(hid ->{
-			
-			
-			
+
+		userHostDto.getHostIds().forEach(hid -> {
 			Host host = hostRepository.save(zabbixHostMap.get(new Integer(hid)));
 			hostRepository.inserUsersHost(userHostDto.getCustomerId(), host.getId());
 		});
-		
-		
+
+	}
+	
+	
+	public Host hostById(Long id) {
+		Host host = hostRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Host Id:" + id));;
+	return	host;
 		
 	}
+	
+    public Host	findByHostId(int hostId) {
+    	Host host = hostRepository.findByHostId(hostId);
+    	return	host;
+    }
+	
+	
+	public boolean updateHost(List<Host> hosts) {
 
+		try {
+			hosts.forEach(host -> {
+				 hostRepository.save(host);
+			});
 
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
+
+	}
+	 
+   public int deleteAllUserHosts(Long userId) {
+	   try {
+		   hostRepository.deleteAllUserHosts(userId);
+		   return 1;
+	} catch (Exception e) {
+		System.out.println(e.toString());
+		return 0;
+	}
+	  
+   }
 
 }

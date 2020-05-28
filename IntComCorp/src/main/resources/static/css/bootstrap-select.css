@@ -357,6 +357,7 @@ select.selectpicker {
   display: inline-block;
   right: 15px;
   top: 5px;
+  color: #09ea09;
 }
 .bootstrap-select.show-tick .dropdown-menu li a span.text {
   margin-right: 34px;
@@ -367,7 +368,7 @@ select.selectpicker {
   width: 0.5em;
   height: 1em;
   border-style: solid;
-  border-width: 0 0.26em 0.26em 0;
+  border-width: 0 0.15em 0.25em 0;
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
        -o-transform: rotate(45deg);

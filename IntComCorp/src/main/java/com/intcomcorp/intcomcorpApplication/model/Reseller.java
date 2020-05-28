@@ -55,7 +55,6 @@ public class Reseller {
 	@Transient
 	private List<String> orgIds;
 
-	//@ManyToMany(mappedBy = "resSet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "org_reseller", joinColumns = {

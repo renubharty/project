@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.intcomcorp.intcomcorpApplication.dto.UserHostsDto;
+import com.intcomcorp.intcomcorpApplication.iccn.repo.HostRepository;
 import com.intcomcorp.intcomcorpApplication.model.Host;
 import com.intcomcorp.intcomcorpApplication.model.User;
 import com.intcomcorp.intcomcorpApplication.service.UserService;
@@ -53,7 +54,7 @@ public class HostController {
 		 * Before add to dropdown removed assigned hosts from list Load Host from Host
 		 * table (Local DB)
 		 */
-		zabbixHostMap = hostService.getAllZabbixHost();
+		zabbixHostMap = hostService.getAllZabbixHost(true);
 		List<Host> filteredHosts = new ArrayList<>(zabbixHostMap.values());
 		model.addAttribute("hostList", filteredHosts);
 
@@ -85,6 +86,7 @@ public class HostController {
 			zabbixHostMap.remove(hid);
 		});
 		m.addAttribute("userHostDto", new UserHostsDto());
+		m.addAttribute("successMsg", "Hosts assigned successfully");
 		return showHostAssign(m, null);
 
 	}
@@ -97,26 +99,60 @@ public class HostController {
 	}
 
 	@GetMapping("/edit/{id}")
-	public String showUpdateHost(@PathVariable("id") Long id, @ModelAttribute("userHostDto") UserHostsDto userHostDto,Model model) {
-
-		//UserHostsDto dto = new UserHostsDto();
+	public String showUpdateHost(@PathVariable("id") Long id, @ModelAttribute("userHostDto") UserHostsDto userHostDto,
+			Model model) {
+        
+		zabbixHostMap = hostService.getAllZabbixHost(true);
+		List<Host> filteredHosts = new ArrayList<>(zabbixHostMap.values());
 		User user = userService.getUserById(id);
 		List<String> hostIds = new ArrayList<String>();
-		
+               
 		user.getUsersHostList().forEach(host -> {
-
-	      	hostIds.add(String.valueOf(host.getHostId()));
+			filteredHosts.add(host);
+			hostIds.add(String.valueOf(host.getHostId()));
 		});
 
 		userHostDto.setCustomerId(id);
 		userHostDto.setHostIds(hostIds);
-	
+
 		model.addAttribute("customerList", user);
 
-		zabbixHostMap = hostService.getAllZabbixHost();
-		List<Host> filteredHosts = new ArrayList<>(zabbixHostMap.values());
+		
 		model.addAttribute("hostList", filteredHosts);
-		return "inventory/assign-hosts"; // showHostAssign(model,id);
+		return "hosts/update-hosts";
+	}
+
+	@PostMapping("/update/{customerId}")
+	public String updateHost(@ModelAttribute("userHostDto") UserHostsDto userHostDto,
+			@PathVariable("customerId") Long customerId, Model model) {
+		User user = userService.getUserById(customerId);
+		
+		List<Host> hostList = new ArrayList<>();
+		hostService.deleteAllUserHosts(customerId);
+		userHostDto.getHostIds().forEach(hostId -> {
+			// Host host = new Host();
+			Host alreadyAssignedhost = hostService.findByHostId(Integer.parseInt(hostId));
+			if (alreadyAssignedhost != null) {
+				alreadyAssignedhost.setUser(user);
+				hostList.add(alreadyAssignedhost);
+			} else {
+				zabbixHostMap = hostService.getAllZabbixHost(false);
+				Host newZabbixHost = zabbixHostMap.get(Integer.parseInt(hostId));
+				newZabbixHost.setUser(user);
+				hostList.add(newZabbixHost);
+			}
+
+			// host.setHostId(Integer.parseInt(hostId));
+
+		});
+
+		if (!hostService.updateHost(hostList)) {
+			model.addAttribute("successMsg", "Error While updating User Host");
+			return "hosts/update-hosts";
+		}
+
+		return getHostByCustomer(model);
+
 	}
 
 }

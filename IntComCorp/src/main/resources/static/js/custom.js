@@ -1,9 +1,59 @@
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#table thead tr').clone(true).appendTo( '#table thead' );
+    $('#table thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+ 
+    var table = $('#table').DataTable( {
+        orderCellsTop: true,
+        fixedHeader: true
+    } );
+} );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var radius = canvas.height / 2;
 ctx.translate(radius, radius);
 radius = radius * 0.90
 setInterval(drawClock, 1000);
+
+
+
+
+
+
+
+
+
+
 
 function drawClock() {
   drawFace(ctx, radius);
@@ -77,3 +127,5 @@ function drawHand(ctx, pos, length, width) {
     ctx.stroke();
     ctx.rotate(-pos);
 }
+
+

@@ -16,4 +16,5 @@ public interface UserService extends UserDetailsService {
 	 public List<User> getAllCustomer();
 	 public List<User> getAllCustomerByHost();
 	 User getUserById(Long id);
+	 public boolean updateUserHosts(User user);
 }

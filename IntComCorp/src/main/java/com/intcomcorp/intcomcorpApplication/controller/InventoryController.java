@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.support.BindingAwareConcurrentModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -117,4 +118,27 @@ public class InventoryController {
 		
 		return "inventory/inventory-list";
 	}
+	
+	@GetMapping("/update/{id}")
+    public String showInventoryEdit(HttpServletRequest request,Model model,@PathVariable("id") Long id) {
+		 log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+		 List<Organization> orgList = orgService.getAllOrg();
+		 Inventory inv = inventoryServicce.getInventoryByid(id);
+		 inv.setDistId( inv.getOrg().getId());
+		 
+		 model.addAttribute("inventory",inv);
+		 model.addAttribute("orgList", orgList);
+		return "/inventory/inventory-update";	
+    }
+	
+	@PostMapping("/update/{id}")
+    public String updateInventory(HttpServletRequest request,Model model,@ModelAttribute("inventory") @Valid Inventory inventory,@PathVariable("id") Long id) {
+		 log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+		 
+		 Organization org = orgService.findById(inventory.getDistId());
+		 inventory.setOrg(org);
+		 inventoryServicce.createInventory(inventory);
+		 model.addAttribute("invList", inventoryServicce.getAll());
+		 return "inventory/inventory-list";	
+    }
 }

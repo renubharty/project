@@ -59,7 +59,7 @@ public class ResellerService {
 	public Reseller findById(Long id) {
 		log.info("ResellerService findById begin");
 		Reseller reseller = resellerRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+				.orElseThrow(() -> new IllegalArgumentException("Invalid Reseller Id:" + id));
 		log.info("ResellerService findById completed");
 		return reseller;
 	}

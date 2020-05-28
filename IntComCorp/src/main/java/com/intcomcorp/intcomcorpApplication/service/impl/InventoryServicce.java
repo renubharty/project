@@ -18,12 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Transactional
 public class InventoryServicce {
-	
+
 	@Autowired
-	private  InventoryRepository   inventoryRepository;
-	
-	
-	
+	private InventoryRepository inventoryRepository;
 
 	public Inventory createInventory(Inventory inventory) {
 		log.info("InventoryServicce createInventory begin");
@@ -37,54 +34,55 @@ public class InventoryServicce {
 		log.info("InventoryServicce inventory finished");
 		return inv;
 	}
-	
-	
+
 	public List<Inventory> getAll() {
 		log.info("InventoryServicce getAll begin");
 		List<Inventory> inventoryList = null;
-		
+
 		try {
 			inventoryList = inventoryRepository.findAll();
-			
-		//	inventoryList  =  inventoryList.stream().filter(inv -> !inv.isDeleted()).collect(Collectors.toList()); 
-			
+
+			// inventoryList = inventoryList.stream().filter(inv ->
+			// !inv.isDeleted()).collect(Collectors.toList());
+
 		} catch (Exception e) {
 			log.error("Exception occuer while saving Reseller", e);
 		}
 
 		log.info("InventoryServicce getAll completed");
-	
+
 		return inventoryList;
 
 	}
-	
-	
-	public void assignHost(Long resId,List<Long> invIds)
-	{   
+
+	public void assignHost(Long resId, List<Long> invIds) {
 		try {
-		invIds.forEach(invId ->{
-			inventoryRepository.inserInvResTab(resId, invId);
-		});
-		} catch(Exception e) {
+			invIds.forEach(invId -> {
+				inventoryRepository.inserInvResTab(resId, invId);
+			});
+		} catch (Exception e) {
 			log.error("Exception occuer while assigning hosts", e);
 		}
 		log.info("InventoryServicce assignHost completed");
 	}
-	
-	
-	
-	public void saveInvWithDistributor(Long distId,Long invId)
-	{   
+
+	public void saveInvWithDistributor(Long distId, Long invId) {
 		try {
-		
+
 			inventoryRepository.inserInvDistTab(distId, invId);
-	
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			log.error("Exception occuer while assigning hosts", e);
 		}
 		log.info("InventoryServicce assignHost completed");
 	}
-	
- 
+
+	public Inventory getInventoryByid(Long id) {
+		log.info("InventoryServicce getInventoryByid started");
+		Inventory inv = inventoryRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid Host Id:" + id));
+		log.info("InventoryServicce getInventoryByid completed");
+		return inv;
+	}
 
 }

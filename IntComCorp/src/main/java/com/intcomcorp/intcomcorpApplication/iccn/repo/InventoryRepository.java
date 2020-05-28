@@ -20,6 +20,6 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long>{
 	@Query(value = "INSERT INTO distributor_inventory (distributor_id,inventory_id ) VALUES (:distId,:invId)"
 			,nativeQuery = true)
 	public void inserInvDistTab(@Param("distId") Long distId,@Param("invId") Long invId);
-
+    public Inventory getInventoryByid(Long id);
 	
 }

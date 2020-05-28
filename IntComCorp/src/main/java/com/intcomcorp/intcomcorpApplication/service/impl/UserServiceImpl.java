@@ -100,4 +100,15 @@ public class UserServiceImpl implements UserService {
 		return user;
 
 	}
+	
+	public boolean updateUserHosts(User user) {
+		
+		try {
+			userRepository.save(user);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			return false;
+		}
+	}
 }
