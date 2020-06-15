@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.intcomcorp.intcomcorpApplication.dto.UserRegistrationDto;
+import com.intcomcorp.intcomcorpApplication.model.Reseller;
 import com.intcomcorp.intcomcorpApplication.model.User;
 
 public interface UserService extends UserDetailsService {
@@ -17,4 +18,5 @@ public interface UserService extends UserDetailsService {
 	 public List<User> getAllCustomerByHost();
 	 User getUserById(Long id);
 	 public boolean updateUserHosts(User user);
+	 User saveReseller(Reseller reseller);
 }

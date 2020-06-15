@@ -1,5 +1,7 @@
 package com.intcomcorp.intcomcorpApplication.iccn.repo;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -33,6 +35,16 @@ public interface ResellerRepository extends JpaRepository<Reseller, Long> {
 	@Query(value = "UPDATE  reseller SET active = false where id = :resId"
 			,nativeQuery = true)
 	public void softDelete(@Param("resId") Long resId);
+	
+	
+	@Modifying
+	@Query(value = "delete from  users_reseller where  user_id not in (:userIds);"
+			,nativeQuery = true)
+	public void removeUser(@Param("userIds") List<Long> resId);
+	
+	
+	public Reseller findByEmail(String email);
+	
 	
 	
 	

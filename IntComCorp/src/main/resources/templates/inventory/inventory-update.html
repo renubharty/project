@@ -21,10 +21,10 @@
 
 <!-- CSS   
   ================================================== -->
-<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="/css/main.css" type="text/css">
-<link rel="stylesheet" href="/css/bootstrap-select.css" type="text/css">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
 
 
 
@@ -43,8 +43,8 @@
 
 	<header>
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}"> <!-- <img
-				src="images/logo.jpg" /> -->
+			<a class="navbar-brand logo" th:href="@{/}"> 
+			<img th:src="@{/css/logo.jpg}" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -170,14 +170,14 @@
 					</div>
 
 					<div class="form-group ">
-						<label for=""orgDropDown"">Select Distributor</label> <select
-							class="form-control selectpicker" th:field="${inventory.distId}"
-							id="orgDropDown" size="10">
-							<option value="0">select organization</option>
-							<option th:each="organization : ${orgList}"
-								th:value="${organization.id}" th:text="${organization.name}"></option>
-						</select> <span th:if="${#fields.hasErrors('distId')}"
-							th:errors="*{distId}" class="text-danger"></span>
+						<label for="resDropdown">Select Reseller</label> <select
+							class="form-control selectpicker" th:field="${inventory.resId}"
+							id="resDropdown" size="10">
+							<option value="0" disabled="disabled">select Reseller</option>
+							<option th:each="reseller : ${resellerList}"
+								th:value="${reseller.id}" th:text="${reseller.name}"></option>
+						</select> <span th:if="${#fields.hasErrors('resId')}"
+							th:errors="*{resId}" class="text-danger"></span>
 					</div>
 
 					<div class="form-group">

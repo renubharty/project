@@ -31,16 +31,9 @@
 
 <!-- Favicons
 	================================================== -->
-<link rel="icon" type="image/png" sizes="16x16"
-	href="images/favicon/favicon.png">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script src="/js/hostcreate.js"></script>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/css/main.css}" rel="stylesheet">
 
 </head>
 
@@ -48,7 +41,8 @@
 
 	<header>
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}"> <img src="images/logo.jpg" />
+			<a class="navbar-brand logo" th:href="@{/}">
+			<img th:src="@{/css/logo.jpg}" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -72,19 +66,10 @@
 				</ul>
 
 				<div class="form-inline my-2 my-lg-0">
-					<div class="search-bar">
-						<input class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
+					
 					<div class="header-right">
 						<ul>
-							<li><a href="#"><i class="fa fa-headphones"></i> Support</a></li>
-							<li><a href="#">Share</a></li>
-							<li><a href="#"><i class="fa fa-question"></i>?</a></li>
-							<li><a th:href="@{/user}"><i class="fa fa-user"></i></a>User</li>
+
 							<li><a th:href="@{/logout}"><i class="fa fa-logout"></i>Logout</a></li>
 						</ul>
 					</div>
@@ -104,24 +89,12 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupported2">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link" href="#">Host
-								groups</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Templates</a>
-						</li>
 
-						<li class="nav-item"><a class="nav-link" th:href="@{/hosts}">Hosts</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Maintenance</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Actions</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Event
-								correlation</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Discovery</a>
-						</li>
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/hosts}">Devices</a></li>
 
-						<li class="nav-item"><a class="nav-link" href="#">Services</a>
-						</li>
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/host/show}">Assign Device</a></li>
 
 
 					</ul>
@@ -135,82 +108,55 @@
 
 	<section class="wrapper">
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="main-head">
-						<h1 class="">Hosts</h1>
-
-					</div>
-
-
-
-
-				</div>
-			</div>
+			
 
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="tab-section">
 
-						<nav class="tabbable">
-							<div class="nav nav-tabs" id="nav-tab" role="tablist">
-								<a class="nav-item nav-link active" id="nav-home-tab"
-									data-toggle="tab" href="#host" role="tab"
-									aria-controls="nav-home" aria-selected="true">Host</a>
-
-
-
-							</div>
-
-						</nav>
+						<nav class="tabbable"></nav>
 
 
 						<div class="tab-content" id="nav-tabContent">
 							<div class="tab-pane fade show active" id="host" role="tabpanel"
 								aria-labelledby="nav-home-tab">
 								<div class="tab-form-section">
-									<div class="col-sm-10">
+									<div class="col-md-6 center is-shady">
 
 										<form id="createhost">
 
 
-											<div class="form-group row">
-												<label for="hostname" class="col-sm-2 col-form-label">Host
-													Name</label> <input type="text" class="form-control" id="hostname"
+											<div class="form-group">
+												<label for="hostname" class="col-sm-3 col-form-label">
+													Device Name</label> <input type="text" class="form-control" id="hostname"
 													placeholder="Enter Host Name" name="hostname">
 											</div>
 
 
-											<div class="form-group row">
+											<div class="form-group ">
 												<label for="groupid" class="col-sm-2 col-form-label">Groups</label>
 												<input type="text" class="form-control" id="groupid"
 													placeholder="Enter Group id" name="groupid">
 											</div>
 
-											<!-- <div class="col-lg-3">
-												<select id="hostgroup" name="hostgroup"
-													th:field="*{hostgroup.id}">
-													<option th:each="hostgroup : ${hostGroups}"
-														th:value="${hostgroup.id}" th:utext="${hostgroup.name}" />
-												</select>
-											</div> -->
 
 
-											<div class="form-group row">
+
+											<div class="form-group ">
 												<label for="hostInterface" class="col-sm-2 col-form-label">
 													Interfaces</label>
 												<div class="col-sm-9">
 													<div class="agent-section">
 														<div class="row">
 
-															<div class="col-sm-3">
+															<div class="col-sm-6">
 																<div class="form-group">
 																	<label for="ip">IP</label> <input type="text" id="ip"
 																		class="form-control" placeholder="127.0.0.1" name="ip">
 																</div>
 															</div>
 
-															<div class="col-sm-3">
+															<div class="col-sm-6">
 																<div class="form-group">
 																	<label for="dns">DNS</label> <input type="text"
 																		id="dns" class="form-control" placeholder="127.0.0.01"
@@ -270,7 +216,7 @@
 
 
 
-											<div class="form-group row">
+											<div class="form-group ">
 												<label for="templateid" class="col-sm-2 col-form-label">
 													Template</label> <input type="text" class="form-control"
 													id="templateid" placeholder="Enter Template id"
@@ -280,7 +226,7 @@
 
 
 
-											<div class="form-group row">
+											<div class="form-group ">
 												<label for="hostMacro" class="col-sm-2 col-form-label">
 													Macros</label>
 												<div class="col-sm-9">
@@ -309,18 +255,14 @@
 												</div>
 											</div>
 
-											<button type="submit" class="btn blue-btn">Submit</button>
-											<button type="submit" class="btn reset-btn">Cancel</button>
+											<button   type="submit" class="btn btn-primary btn-block cst-btn-bg">Submit</button>
+											
 										</form>
 
 
 									</div>
 								</div>
 							</div>
-
-
-
-
 
 						</div>
 
@@ -337,17 +279,10 @@
 	</section>
 
 
-	<!-- All Javascript include here for fast loading of page -->
-	<!--  <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
-	<script type="text/javascript" src="js/popper.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/custom.js"></script> -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/hostcreate.js}"></script>
 
 </body>
 

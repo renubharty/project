@@ -28,19 +28,6 @@
 <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/css/main.css" type="text/css">
 
-<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-<!-- Favicons
-	================================================== -->
-<!-- <link rel="icon" type="image/png" sizes="16x16"
-	href="images/favicon/favicon.png"> -->
-	
-	<style>
-	
-
-	</style>
 </head>
 
 
@@ -48,8 +35,8 @@
 
 	<header>
 		<nav class="navbar navbar-expand-lg ">
-			<a class="navbar-brand logo" th:href="@{/}"> <!-- <img
-				src="images/logo.jpg" /> -->
+			<a class="navbar-brand logo" th:href="@{/}"> <img
+				src="/css/logo.jpg" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -62,28 +49,17 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link active"
 						th:href="@{/monitoring}">Monitoring</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Inventory</a>
+					<li class="nav-item"><a class="nav-link" href="@{/inventory}">Inventory</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/configuration}">Configuration</a></li>
 					<li class="nav-item"><a class="nav-link"
-						th:href="@{/administration}">Administration</a></li>
+						th:href="@{/organization}">Administration</a></li>
 				</ul>
 
-				<div class="form-inline my-2 my-lg-0">
-					<div class="search-bar">
-						<input class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
-
-
-
-				</div>
+				
 			</div>
 		</nav>
 		<div class="main-nav">
@@ -98,20 +74,15 @@
 				<div class="collapse navbar-collapse" id="navbarSupported2">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/organization/get}">View Organization</a></li>
+							th:href="@{/organization}">Distributor</a></li>
+						
+				
 						<li class="nav-item"><a class="nav-link"
-							th:href="@{/authentication}">Delete Organization</a></li>
-						<li class="nav-item"><a class="nav-link" href="@{/users}">Update
-								Organization</a></li>
-
-
+							th:href="@{/reseller}">Resellers </a></li>
 
 
 
 					</ul>
-
-
-				</div>
 			</nav>
 		</div>
 	</header>
@@ -132,9 +103,9 @@
 	<div class="container">
 	<div class="inner-box">
 		<div class="row">
-			<div class="col-md-6">
-				<h1 class="head-txt">Distributor</h1>
-				<form th:action="@{/organization}" th:object="${organizationDto}"
+			<div class="col-md-6 center">
+				
+		<!-- 		<form th:action="@{/organization}" th:object="${organizationDto}"
 					method="post">
 					<h2>
 						<span class="alert-success" th:utext="${successMsg}"></span>
@@ -169,7 +140,7 @@
 
 					</div>
 					<div class="form-group">
-						<label for="address" class="col-form-label">Address</label> <input
+						<label for="address" class="col-form-label">Address</label> <textarea
 							type="text" id="Address" class="form-control"
 							th:field="*{address}" placeholder="Address" /> <span
 							th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
@@ -209,7 +180,7 @@
 						<button type="submit" class="btn btn-primary btn-block cst-btn-bg">Submit</button>
 
 					</div>
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</div>

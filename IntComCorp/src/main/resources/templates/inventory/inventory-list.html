@@ -21,9 +21,11 @@
 
 <!-- CSS
   ================================================== -->
-<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="/css/main.css" type="text/css">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
+<link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -46,8 +48,8 @@
 
 	<header>
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}"> <!-- <img
-				src="images/logo.jpg" /> -->
+			<a class="navbar-brand logo" th:href="@{/}"> 
+			<img th:src="@{/css/logo.jpg}" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -71,16 +73,6 @@
 				</ul>
 
 				<div class="form-inline my-2 my-lg-0">
-					<div class="search-bar">
-						<input class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
-
-
-
 				</div>
 			</div>
 		</nav>
@@ -139,8 +131,9 @@
 											<th>Device Name</th>
 											<th>Serial No</th>
 											<th>Mac Address</th>
-											<th>Distributor</th>
+											<th>Reseller</th>
 											<th>Edit</th>
+											<th>Delete</th>
 
 										</tr>
 									</thead>
@@ -149,12 +142,46 @@
 											<td th:text="${inv.name}"></td>
 											<td th:text="${inv.serialNumber}"></td>
 											<td th:text="${inv.macaddress}"></td>
-                                            <td th:text="${inv.org.name}"></td>
+                                            <td th:text="${inv.reseller.name}"></td>
 											<td><a
 												th:href="@{/inventory/update/{id}(id=${inv.id})}"
 												class="btn btn-primary round-btn-clc"><i class="fas fa-user-edit ml-2"></i></a></td>
 											
-
+                                          <td><a data-toggle="modal" data-target="#modal-warning"
+												th:attr="data-target='#modal-warning'+${inv.id }"
+												class="btn btn-primary  round-btn-clc"> <i
+													class="fas fa-user-times ml-2"></i>
+											</a>
+											</td>
+											<!-- MODAL START-->
+											
+														<!-- -- MODAl  -->
+											<div class="modal modal-warning fade in"
+												th:id="modal-warning+${inv.id }">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">×</span>
+															</button>
+															<h5 class="modal-title">Delete Inventory</h5>
+														</div>
+														<div class="modal-body">
+															<h3>Are you sure want to delete this Inventory?</h3>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-outline pull-left"
+																data-dismiss="modal">Close</button>
+															<a type="button" class="btn btn-outline"
+																th:href="@{/inventory/delete/{id}(id=${inv.id})}"><i
+																class="fa fa-check"></i>&nbsp;Yes</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<!-- MODAL END -->
 
 										</tr>
 									</tbody>
@@ -172,11 +199,13 @@
 
 
  
-	<script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script>
-	<script type="text/javascript" src="/js/popper.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="/js/custom.js"></script>
+	<!-- All Javascript include here for fast loading of page -->
+	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+	<script th:src="@{/js/jquery.dataTables.min.js}"></script>
 	
 </body>
 

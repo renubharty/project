@@ -46,10 +46,14 @@ public class Organization {
 	@Email(message = "Email should be in proper format")
 	@NotEmpty
 	private String email;
-	@ManyToMany(mappedBy = "orgSet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<Reseller> resSet = new HashSet<>();
-	@OneToMany(mappedBy = "org", fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
-	private List<Inventory> inventoryList = new ArrayList<>();
+	/*
+	 * @ManyToMany(mappedBy = "orgSet", fetch = FetchType.EAGER, cascade =
+	 * CascadeType.ALL) private Set<Reseller> resSet = new HashSet<>();
+	 */
+	/*
+	 * @OneToMany(mappedBy = "org", fetch = FetchType.EAGER, cascade =
+	 * CascadeType.ALL) private List<Inventory> inventoryList = new ArrayList<>();
+	 */
 	
 	public Organization(Organization org) {
 		this.id = org.getId();

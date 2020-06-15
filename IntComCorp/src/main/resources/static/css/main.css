@@ -621,3 +621,8 @@ a.btn.btn-primary.round-btn-clc {
     font-size: 20px;
     padding: 3px 0;
 }
+
+.center{
+	margin-right: auto;
+    margin-left: auto;
+}

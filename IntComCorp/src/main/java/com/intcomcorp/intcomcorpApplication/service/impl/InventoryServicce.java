@@ -22,17 +22,19 @@ public class InventoryServicce {
 	@Autowired
 	private InventoryRepository inventoryRepository;
 
-	public Inventory createInventory(Inventory inventory) {
+	public boolean createInventory(Inventory inventory) {
 		log.info("InventoryServicce createInventory begin");
-		Inventory inv = null;
+		boolean isCreated = false;
 		try {
-			inv = inventoryRepository.save(inventory);
+			inventoryRepository.save(inventory);
+			isCreated = true;
 		} catch (Exception e) {
+			isCreated = false;
 			log.error("Exception occuer while saving inventory", e);
 
 		}
 		log.info("InventoryServicce inventory finished");
-		return inv;
+		return isCreated;
 	}
 
 	public List<Inventory> getAll() {
@@ -42,8 +44,9 @@ public class InventoryServicce {
 		try {
 			inventoryList = inventoryRepository.findAll();
 
-			// inventoryList = inventoryList.stream().filter(inv ->
-			// !inv.isDeleted()).collect(Collectors.toList());
+			inventoryList=	inventoryList
+					                    .stream()
+					                    .filter(inv -> !inv.isDeleted()).collect(Collectors.toList());
 
 		} catch (Exception e) {
 			log.error("Exception occuer while saving Reseller", e);
@@ -58,7 +61,6 @@ public class InventoryServicce {
 	public void assignHost(Long resId, List<Long> invIds) {
 		try {
 			invIds.forEach(invId -> {
-				inventoryRepository.inserInvResTab(resId, invId);
 			});
 		} catch (Exception e) {
 			log.error("Exception occuer while assigning hosts", e);
@@ -83,6 +85,21 @@ public class InventoryServicce {
 				.orElseThrow(() -> new IllegalArgumentException("Invalid Host Id:" + id));
 		log.info("InventoryServicce getInventoryByid completed");
 		return inv;
+	}
+
+	public boolean deleteInventory(Long id) {
+		log.info("InventoryServicce deleteInventory started");
+		boolean isDeleted = false;
+		try {
+			inventoryRepository.softDelete(id);
+		    inventoryRepository.deleteInvRes(id);
+			isDeleted = true;
+		} catch (Exception e) {
+			isDeleted = false;
+			log.error("Error while deleting Inventory " + e);
+		}
+		log.info("InventoryServicce deleteInventory finished");
+		return isDeleted;
 	}
 
 }

@@ -1,10 +1,20 @@
 package com.intcomcorp.intcomcorpApplication.dto;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotEmpty;
 
 import com.intcomcorp.intcomcorpApplication.constraint.FieldMatch;
+import com.intcomcorp.intcomcorpApplication.model.User;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match")
+@Getter
+@Setter
+@NoArgsConstructor
 public class PasswordResetDto {
 
 	@NotEmpty
@@ -15,28 +25,8 @@ public class PasswordResetDto {
 
 	@NotEmpty
 	private String token;
+	
+	private User user;
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
+	
 }

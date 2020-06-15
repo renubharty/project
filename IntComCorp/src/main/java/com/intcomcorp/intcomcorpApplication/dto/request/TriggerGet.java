@@ -1,8 +1,13 @@
 package com.intcomcorp.intcomcorpApplication.dto.request;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class TriggerGet {
 	private String triggerids;
 	private String output;

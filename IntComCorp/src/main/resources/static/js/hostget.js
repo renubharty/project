@@ -34,17 +34,11 @@ $(document).ready(function(){
 													+ '</td><td>'
 													+ data.jsonObject.result[i].hostid
 													+ '</td><td>'
-													+ data.jsonObject.result[i].inventory_mode
-													+ '</td><td>'
 													+ availability([data.jsonObject.result[i].available, data.jsonObject.result[i].snmp_available,data.jsonObject.result[i].jmx_available,data.jsonObject.result[i].ipmi_available])
 													+ '</td><td>'
-													+ data.jsonObject.result[i].ipmi_privilege
-													+ '</td><td>'
-													+ data.jsonObject.result[i].auto_compress
-													+ '</td><td>'
-													+ data.jsonObject.result[i].ipmi_authtype
-													+ '</td><td>'
-													+ data.jsonObject.result[i].tls_connect
+													
+													+ (data.jsonObject.result[i].status == "0" ? "Enabled" : "Disabled")
+													
 													+ '</td></tr>';
 
 										}

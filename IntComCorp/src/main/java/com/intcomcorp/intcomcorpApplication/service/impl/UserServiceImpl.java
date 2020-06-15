@@ -16,12 +16,16 @@ import org.springframework.stereotype.Service;
 
 import com.intcomcorp.intcomcorpApplication.dto.UserRegistrationDto;
 import com.intcomcorp.intcomcorpApplication.iccn.repo.UserRepository;
+import com.intcomcorp.intcomcorpApplication.model.Reseller;
 import com.intcomcorp.intcomcorpApplication.model.Role;
 import com.intcomcorp.intcomcorpApplication.model.User;
 import com.intcomcorp.intcomcorpApplication.service.UserService;
+import com.intcomcorp.intcomcorpApplication.utils.RandomUniquePassword;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
-
+@Slf4j
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -39,7 +43,12 @@ public class UserServiceImpl implements UserService {
 		user.setFirstName(registration.getFirstName());
 		user.setLastName(registration.getLastName());
 		user.setEmail(registration.getEmail());
-		user.setPassword(passwordEncoder.encode(registration.getPassword()));
+		user.setPassword(registration.getPhone());
+		user.setCompany(registration.getCompany());
+		user.setCity(registration.getCity());
+		user.setZip(registration.getZip());
+		user.setReseller(registration.getReseller());
+		user.setPassword(passwordEncoder.encode(RandomUniquePassword.generateRandomPassword(9)));
 		user.setRoles(Arrays.asList(new Role("ROLE_USER")));
 		return userRepository.save(user);
 	}
@@ -107,8 +116,27 @@ public class UserServiceImpl implements UserService {
 			userRepository.save(user);
 			return true;
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			
 			return false;
 		}
+		
+		
+	}
+	
+public User  saveReseller(Reseller reseller) {
+		
+		User user = new User();
+		user.setFirstName(reseller.getName());
+		user.setEmail(reseller.getEmail());
+		user.setPassword(passwordEncoder.encode(reseller.getPassword()));
+		System.out.println(" reseller.getPassword() " +reseller.getPassword());
+		user.setRoles(Arrays.asList(new Role("ROLE_RESELLER")));
+		try {
+			userRepository.save(user);	
+		} catch (Exception e) {
+			log.error("Error while saving in user table", e);
+		}
+		return user;
+	    
 	}
 }

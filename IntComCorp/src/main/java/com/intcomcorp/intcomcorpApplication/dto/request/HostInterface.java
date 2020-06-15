@@ -1,11 +1,15 @@
 package com.intcomcorp.intcomcorpApplication.dto.request;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class HostInterface {
 	private String dns;
-//	private String hostid;
 	private String ip;
 	private int main;
 	private String port;

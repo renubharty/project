@@ -1,8 +1,12 @@
 package com.intcomcorp.intcomcorpApplication.dto.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Template {
 	private String templateid;
 //	private String host;

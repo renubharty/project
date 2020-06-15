@@ -2,11 +2,16 @@ package com.intcomcorp.intcomcorpApplication.dto;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Request extends ZabbixRequest {
     private Map<String, Object> params = new HashMap<>();
     public void putParam(String key, Object value) {

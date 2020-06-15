@@ -42,21 +42,7 @@ public class ZabbixUserController {
 		return "zabbix/user/userget";
 	}
 
-	@GetMapping(value = "edit/{userId}")
-	public String editUser(@PathVariable String userId, Model model, HttpServletRequest request) throws JSONException {
-		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		List<UserGet> userGet = userService.get();
-		UserGet edirUser = null;
-		for (UserGet user : userGet) {
-			if (user.getUserId().equals(userId)) {
-				edirUser = user;
-				break;
-			}
 
-		}
-		model.addAttribute("userget", edirUser);
-		return "zabbix/user/edituser";
-	}
 
 	@PostMapping(value = "editUser/{userId}")
 	public String updateUser(@PathVariable String userId, UserGet userGet, HttpServletRequest request)

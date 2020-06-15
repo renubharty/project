@@ -24,6 +24,7 @@ import com.intcomcorp.intcomcorpApplication.iccn.repo.PasswordResetTokenReposito
 import com.intcomcorp.intcomcorpApplication.model.PasswordResetToken;
 import com.intcomcorp.intcomcorpApplication.model.User;
 import com.intcomcorp.intcomcorpApplication.service.UserService;
+import com.intcomcorp.intcomcorpApplication.service.impl.TokenService;
 import com.intcomcorp.intcomcorpApplication.utils.Constants;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +37,9 @@ public class PasswordResetController {
 
 	@Autowired
 	private UserService userService;
+	
 	@Autowired
-	private PasswordResetTokenRepository tokenRepository;
+	private TokenService  tokenService;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -50,7 +52,7 @@ public class PasswordResetController {
 	@GetMapping
 	public String displayResetPasswordPage(@RequestParam(required = false) String token, Model model,HttpServletRequest request) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		PasswordResetToken resetToken = tokenRepository.findByToken(token);
+		PasswordResetToken resetToken = tokenService.findByToken(token);
 		if (resetToken == null) {
 			model.addAttribute("error", "Could not find password reset token.");
 		} else if (resetToken.isExpired()) {
@@ -73,11 +75,11 @@ public class PasswordResetController {
 			return "redirect:/reset-password?token=" + form.getToken();
 		}
 
-		PasswordResetToken token = tokenRepository.findByToken(form.getToken());
+		PasswordResetToken token = tokenService.findByToken(form.getToken());
 		User user = token.getUser();
 		String updatedPassword = passwordEncoder.encode(form.getPassword());
 		userService.updatePassword(updatedPassword, user.getId());
-		tokenRepository.delete(token);
+		tokenService.delete(token);
 
 		return "redirect:/login?resetSuccess";
 	}

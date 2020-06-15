@@ -5,5 +5,6 @@ public class Constants {
 	 public static final String LOGIN_VALIDATE = "loginVal";
 	 public static final String URL = "http://localhost:8081/zabbixapi/hosts/test";
 	 
+	 private Constants() {}
 
 }

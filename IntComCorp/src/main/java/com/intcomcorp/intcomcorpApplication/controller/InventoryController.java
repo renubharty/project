@@ -43,9 +43,6 @@ public class InventoryController {
 
 	@Autowired
 	private ResellerService resellerService;
-	
-	@Autowired
-	private OrganizationServiceimpl  orgService;
 
 	@ModelAttribute("inventory")
 	public Inventory inventory(HttpServletRequest request) {
@@ -62,26 +59,32 @@ public class InventoryController {
 	@GetMapping
 	public String showinventory(Model model, HttpServletRequest request) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		List<Organization> orgList = orgService.getAllOrg();
-		model.addAttribute("orgList", orgList);
+		List<Reseller> resellerList = resellerService.getAll();
+		model.addAttribute("resellerList", resellerList);
+		model.addAttribute("inventory", new Inventory());
 		return "inventory/inventory";
 	}
 
 	@PostMapping("add")
 	public String saveInventory(Model model, @ModelAttribute("inventory") @Valid Inventory inventory,
 			BindingResult result, HttpServletRequest request) {
-		log.info("InventoryController  method saveInventory begin");
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
 
 		if (result.hasErrors()) {
-			return showinventory(new BindingAwareConcurrentModel(), request);
+			return showinventory(model, request);
 		}
-		Organization org = orgService.findById(inventory.getDistId());
-	    Inventory inv =	inventoryServicce.createInventory(inventory);
-		inventoryServicce.saveInvWithDistributor(org.getId(),inv.getId());
+		
+		Reseller res = resellerService.findById(inventory.getResId());
+		System.out.println("<<<<<>>>>>>>>>"  +res.getId());
+		inventory.setReseller(res);
+		if (!inventoryServicce.createInventory(inventory)) {
+			return showinventory(model, request);
+		}
+		// inventoryServicce.saveInvWithDistributor(org.getId(),inv.getId());
 		model.addAttribute("inventory", new Inventory());
+
 		model.addAttribute("successMsg", "Inventory Created Successfully");
-		return "inventory/inventory";
+		return showinventory(model, request);
 	}
 
 	@GetMapping("assign")
@@ -93,12 +96,11 @@ public class InventoryController {
 		model.addAttribute("invList", invList);
 		return "inventory/assign-inventory";
 	}
-	
-	
-	
+
 	@PostMapping("assignTo/reseller")
-	public String assignToReseller(Model model, @ModelAttribute("resellerInventoryRequest") @Valid ResellerInventoryRequest resInvReq,
-			BindingResult result, HttpServletRequest request) {
+	public String assignToReseller(Model model,
+			@ModelAttribute("resellerInventoryRequest") @Valid ResellerInventoryRequest resInvReq, BindingResult result,
+			HttpServletRequest request) {
 		log.info("InventoryController  method assignToReseller begin");
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
 
@@ -110,35 +112,51 @@ public class InventoryController {
 		model.addAttribute("successMsg", "Hosts assigned Successfully");
 		return "inventory/assign-inventory";
 	}
-	
+
 	@GetMapping("/get")
 	public String getAllCustomer(Model model) {
-		
+		inventoryServicce.getAll().forEach(inv -> {
+			System.out.println("INV RES" + inv.getReseller().getName());
+		});
 		model.addAttribute("invList", inventoryServicce.getAll());
-		
+
+		return "inventory/inventory-list";
+	}
+
+	@GetMapping("/update/{id}")
+	public String showInventoryEdit(HttpServletRequest request, Model model, @PathVariable("id") Long id) {
+		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+		List<Reseller> resellerList = resellerService.getAll();
+
+		Inventory inv = inventoryServicce.getInventoryByid(id);
+		inv.setResId(inv.getReseller().getId());
+		model.addAttribute("inventory", inv);
+		model.addAttribute("resellerList", resellerList);
+		return "/inventory/inventory-update";
+	}
+
+	@PostMapping("/update/{id}")
+	public String updateInventory(HttpServletRequest request, Model model,
+			@ModelAttribute("inventory") @Valid Inventory inventory, @PathVariable("id") Long id) {
+		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+
+		Reseller res = resellerService.findById(inventory.getResId());
+		inventory.setReseller(res);
+		inventoryServicce.createInventory(inventory);
+		model.addAttribute("invList", inventoryServicce.getAll());
 		return "inventory/inventory-list";
 	}
 	
-	@GetMapping("/update/{id}")
-    public String showInventoryEdit(HttpServletRequest request,Model model,@PathVariable("id") Long id) {
-		 log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		 List<Organization> orgList = orgService.getAllOrg();
-		 Inventory inv = inventoryServicce.getInventoryByid(id);
-		 inv.setDistId( inv.getOrg().getId());
-		 
-		 model.addAttribute("inventory",inv);
-		 model.addAttribute("orgList", orgList);
-		return "/inventory/inventory-update";	
-    }
-	
-	@PostMapping("/update/{id}")
-    public String updateInventory(HttpServletRequest request,Model model,@ModelAttribute("inventory") @Valid Inventory inventory,@PathVariable("id") Long id) {
-		 log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		 
-		 Organization org = orgService.findById(inventory.getDistId());
-		 inventory.setOrg(org);
-		 inventoryServicce.createInventory(inventory);
-		 model.addAttribute("invList", inventoryServicce.getAll());
-		 return "inventory/inventory-list";	
-    }
+	@GetMapping("/delete/{id}")
+	public String deleteInventory(HttpServletRequest request, Model model,@PathVariable("id") Long id) {
+		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+		
+		if (!inventoryServicce.deleteInventory(id)) {
+			return "/error";
+		}
+		model.addAttribute("invList", inventoryServicce.getAll());
+		return "inventory/inventory-list";
+		
+		
+	}
 }

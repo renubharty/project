@@ -30,21 +30,16 @@
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="css/main.css" type="text/css">
 
-<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 
-<!-- Favicons
-	================================================== -->
-<!-- <link rel="icon" type="image/png" sizes="16x16"
-	href="images/favicon/favicon.png"> -->
 </head>
 
 <body>
 
 	<header>
 		<nav class="navbar navbar-expand-lg">
-
+          <a class="navbar-brand logo" href="#">
+               <img th:src="@{/css/logo.jpg}" />
+            </a>
 
 
 
@@ -69,42 +64,21 @@
 						th:href="@{/configuration}">Configuration</a></li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/administration}">Administration</a></li>
+						
+						<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/registration}">User</a></li>
 				</ul>
 
-				<div class="form-inline my-2 my-lg-0">
-					<div class="search-bar">
-						<input class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
+			<div class="form-inline my-2 my-lg-0">
+					
 					<div class="header-right">
 						<ul>
-
-
-							<li><a href="#"><i class="fa fa-headphones"></i> Support</a></li>
-							<li><a href="#">Share</a></li>
-							<li><a href="#"><i class="fa fa-question"></i>?</a></li>
-
-
-
-
-
 							<li><a th:text="${user.firstName}"><i class="fa fa-user"></i></a>
 								<table>
 									<tbody th:each="role : ${user.roles}" th:remove="tag">
 										<tr>
-											<div th:switch="${role.name}">
-												<p th:case="ROLE_ADMIN"></p>
-												<p th:case="ROLE_USER"></p>
-
-											</div>
-
-
 											<td th:text="${role.name}">...</td>
 										</tr>
-
 									</tbody>
 								</table></li>
 							<li><a th:href="@{/logout}"><i class="fa fa-logout"></i>Logout</a></li>
@@ -129,7 +103,7 @@
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link active"
 							th:href="@{/}">Dashboard</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Problems</a></li>
+					<!-- 	<li class="nav-item"><a class="nav-link" href="#">Problems</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Overview</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">Web</a></li>
@@ -142,7 +116,7 @@
 						<li class="nav-item"><a class="nav-link" href="#">Discovery</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">Services</a>
-						</li>
+						</li> -->
 
 
 					</ul>
@@ -158,18 +132,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-12">
-					<div class="main-head">
-						<h1 class="">Global View</h1>
-						<div class="head-right">
-							<button class="btn blue-btn">Edit Dashboard</button>
-							<button class="btn hum-icon">
-								<i class="fa fa-navicon ">Actions</i>
-							</button>
-							<button class="btn hum-icon">
-								<i class="fa fa-expand">Fullscreen</i>
-							</button>
-						</div>
-					</div>
+				
 					<div class="bread-crumb">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">

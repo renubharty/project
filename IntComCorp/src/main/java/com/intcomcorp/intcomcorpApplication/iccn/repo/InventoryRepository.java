@@ -12,14 +12,26 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long>{
 	
 	
 	@Modifying
-	@Query(value = "INSERT INTO inventory_reseller (reseller_id,inventory_id) VALUES (:resId,:invId)"
+	@Query(value = "INSERT INTO  reseller_inventory (reseller_id,inventory_id) VALUES (:resId,:invId)"
 			,nativeQuery = true)
-	public void inserInvResTab(@Param("resId") Long resId,@Param("invId") Long invId);
+	public void insertInInvResTab(@Param("resId") Long resId,@Param("invId") Long invId);
 	
 	@Modifying
 	@Query(value = "INSERT INTO distributor_inventory (distributor_id,inventory_id ) VALUES (:distId,:invId)"
 			,nativeQuery = true)
 	public void inserInvDistTab(@Param("distId") Long distId,@Param("invId") Long invId);
-    public Inventory getInventoryByid(Long id);
+    
+	public Inventory getInventoryByid(Long id);
+	
+	@Modifying
+	@Query(value = "UPDATE  inventory SET isDeleted  = true where id = :invId"
+			,nativeQuery = true)
+	public void softDelete(@Param("invId") Long invId);
+	
+	@Modifying
+	@Query(value = "delete from  reseller_inventory where inventory_id = :invId "
+			,nativeQuery = true)
+	public void deleteInvRes(@Param("invId") Long invId);
+	
 	
 }

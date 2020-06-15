@@ -3,11 +3,16 @@ package com.intcomcorp.intcomcorpApplication.dto.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class ItemGet {
 
 	private String output;

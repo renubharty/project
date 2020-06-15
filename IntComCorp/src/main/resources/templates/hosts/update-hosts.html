@@ -33,8 +33,8 @@
 
 	<header>
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}"> <!-- <img
-				src="images/logo.jpg" /> -->
+			<a class="navbar-brand logo" th:href="@{/}">
+			 <img th:src="@{/css/logo.jpg}" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -58,13 +58,7 @@
 				</ul>
 
 				<div class="form-inline my-2 my-lg-0">
-					<div class="search-bar">
-						<input class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
+					
 
 				</div>
 			</div>
@@ -81,7 +75,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupported2">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/host/get}">View Customer's Host</a></li>
+							th:href="@{/host/get}">View Customer's Devices</a></li>
 
 
 
@@ -108,9 +102,9 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-6 col-md-offset-3 center">
 
-				<h1 class="head-txt">Host Assign</h1>
+				<h1 class="head-txt">Assign Device</h1>
 				
 			
 				<form th:action="@{/host/update/{id}(id=${userHostDto.customerId})}"
@@ -120,7 +114,7 @@
 			<div class="form-group ">
 						<label for="orgDropDown">Select Customer</label> <select
 							class="form-control selectpicker" th:field="${userHostDto.customerId}"
-							id="orgDropDown" size="10" >
+							id="orgDropDown" size="10" required="required" >
 							<option value="0" disabled="disabled">Select Customer</option>
 							<option th:each="customer : ${customerList}"
 								th:value="${customer.id}" th:text="${customer.firstName}"></option>
@@ -129,10 +123,10 @@
 		    </div>	
 		    
 		    <div class="form-group ">
-						<label for="orgDropDown">Select Hosts</label> <select
+						<label for="orgDropDown">Select Devices</label> <select
 							class="form-control selectpicker" th:field="${userHostDto.hostIds}"
-							id="orgDropDown" size="10" multiple="multiple">
-							<option value="0">select Hosts</option>
+							id="orgDropDown" size="10" multiple="multiple" required="required">
+							<option value="0">select Devices</option>
 							<option th:each="host : ${hostList}"
 								th:value="${host.hostId}" th:text="${host.name}"></option>
 						</select> <span th:if="${#fields.hasErrors('hostIds')}"

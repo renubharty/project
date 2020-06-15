@@ -18,6 +18,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,33 +31,40 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name = "Inventory")
+@Table(name = "inventory")
 public class Inventory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotBlank
 	private String type;
+	@NotBlank
 	private String name;
+	@NotBlank
 	@Column(name = "mac_address")
 	private String macaddress;
+	@NotBlank
 	private String model;
+	@NotBlank
 	private String vendor;
+	@NotBlank
 	@Column(name = "serial_number")
 	private String serialNumber;
 	@Transient
-	private Long distId;
+	private Long resId;
 	
 	
-	 @ManyToOne(fetch = FetchType.EAGER, optional = false)
+	 @ManyToOne(fetch = FetchType.EAGER)
 	 @JoinTable(
-	            name = "distributor_inventory",
+	            name = "reseller_inventory",
 	            joinColumns = @JoinColumn(name = "inventory_id"),
-	            inverseJoinColumns = @JoinColumn(name = "distributor_id")
-	    )  
-    
-	private Organization org ;
+	            inverseJoinColumns = @JoinColumn(name = "reseller_id")
+	    )
+	private Reseller reseller ;
 	 
 	private boolean isDeleted;
+	
 	private boolean isAssign;
+	
 
 }

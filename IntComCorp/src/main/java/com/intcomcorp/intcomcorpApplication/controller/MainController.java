@@ -46,13 +46,14 @@ public class MainController {
 	public Model hostgroups(Model model, HttpServletRequest request) {
 		List<HostGroup> hostGroups = new ArrayList<>();
 		HostGroup g = new HostGroup();
-		g.setGroupid("1");
-		g.setName("test1");
-		hostGroups.add(g);
-		g = new HostGroup();
-		g.setGroupid("2");
-		g.setName("test2");
-		hostGroups.add(g);
+		// Testing code 
+//		g.setGroupid("1");
+//		g.setName("test1");
+//		hostGroups.add(g);
+//		g = new HostGroup();
+//		g.setGroupid("2");
+//		g.setName("test2");
+//		hostGroups.add(g);
 		model.addAttribute("hostGroups", hostGroups);
 
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));

@@ -22,19 +22,13 @@
 
 <!-- CSS
   ================================================== -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/main.css" type="text/css">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/main.css}" rel="stylesheet">
 
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script src="/js/hostget.js"></script>
+
 
 
 <!-- Favicons
@@ -48,7 +42,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg">
 			<a class="navbar-brand logo" th:href="@{/}"> <img
-				src="images/logo.jpg" />
+				src="/css/logo.jpg" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -68,23 +62,15 @@
 					<li class="nav-item"><a class="nav-link active"
 						th:href="@{/configuration}">Configuration</a></li>
 					<li class="nav-item"><a class="nav-link"
-						th:href="@{/administration}">Administration</a></li>
+						th:href="@{/organization}">Administration</a></li>
 				</ul>
 
 				<div class="form-inline my-2 my-lg-0">
-					<div class="search-bar">
-						<input class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
+					
 					<div class="header-right">
 						<ul>
-							<li><a href="#"><i class="fa fa-headphones"></i> Support</a></li>
-							<li><a href="#">Share</a></li>
-							<li><a href="#"><i class="fa fa-question"></i>?</a></li>
-							<li><a th:href="@{/user}"><i class="fa fa-user"></i></a>User</li>
+							
+							
 							<li><a th:href="@{/logout}"><i class="fa fa-logout"></i>Logout</a></li>
 						</ul>
 
@@ -105,28 +91,16 @@
 
 				<div class="collapse navbar-collapse" id="navbarSupported2">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/hostgroups}">Host groups</a></li>
-						<li class="nav-item"><a class="nav-link" href="@{/problams}">Templates</a>
-						</li>
+						
+						
 
 						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/hosts}">Hosts</a></li>
-						<li class="nav-item"><a class="nav-link" href="@{/overview}">Maintenance</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="@{/web}">Actions</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="@{/data}">Event
-								correlation</a></li>
-
-
-
-						<li class="nav-item"><a class="nav-link" href="@{/discovery}">Discovery</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="@{/services}">Services</a>
-						</li>
+							th:href="@{/hosts}">Devices</a></li>
+						
+						
+					
                          <li class="nav-item"><a class="nav-link active"
-							th:href="@{/host/show}">Assign Host</a></li>
+							th:href="@{/host/show}">Assign Device</a></li>
 
 
 					</ul>
@@ -143,7 +117,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="main-head group-outer">
-						<h1 class="">Hosts</h1>
+						<h1 class="">Devices</h1>
 
 						<div class="head-right">
 							<div class="group-box">
@@ -163,7 +137,7 @@
 
 							</div>
 
-							<button class="btn blue-btn">Create Host</button>
+							<button class="btn blue-btn">Create Device</button>
 							<button class="btn blue-btn">Import</button>
 						</div>
 
@@ -176,13 +150,7 @@
 				</div>
 			</div>
 			<aside class="filter-outer">
-				<div class="filter-nav row">
-					<div class="col-sm-12">
-						<ul>
-							<li><a href="#"><i class="fa fa-filter"></i> Filter</a></li>
-						</ul>
-					</div>
-				</div>
+				
 
 				<div class="filter-section">
 
@@ -196,7 +164,7 @@
 											<label for="hostNames" class="col-sm-2 col-form-label">Name</label>
 
 											<input type="text" class="form-control" id="hostNames"
-												placeholder="Host name" name="hostNames">
+												placeholder="Device name" name="hostNames">
 
 										</div>
 
@@ -220,26 +188,12 @@
 						<thead>
 							<tr>
 
-								<th>Host</th>
-								<th>Hostid</th>
-								<th>Inventory_mode</th>
+								<th>Device</th>
+								<th>Device id</th>
 								<th>Availability</th>
-								<th>Ipmi_privilege</th>
-								<th>Auto_compress</th>
-								<th>Ipmi_authtype</th>
-								<th>Tls_connect</th>
-
-								<th>Delete</th>
+								<th>status</th>
 							</tr>
 						</thead>
-
-						<!-- <tbody>
-
-							<td><a th:href="@{/zabbixapi/hosts/{hostids}(hostids=${host.hostid})}"
-								class="btn btn-primary"><i class="fas fa-host-times ml-2"></i></a></td>
-
-
-						</tbody> -->
 					</table>
 				</div>
 			</div>
@@ -270,7 +224,11 @@
 	</script>
 
 
-
+    <script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/hostget.js}"></script>
+	
 
 </body>
 

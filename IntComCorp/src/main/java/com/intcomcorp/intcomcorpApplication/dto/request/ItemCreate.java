@@ -1,6 +1,9 @@
 package com.intcomcorp.intcomcorpApplication.dto.request;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Set;
 
@@ -8,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class ItemCreate {
 
 	private String name;

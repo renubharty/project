@@ -22,7 +22,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.intcomcorp.intcomcorpApplication.dto.response.ApiResponse;
 import com.intcomcorp.intcomcorpApplication.dto.response.ErrorResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestControllerAdvice
+@Slf4j
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 	private static MessageSource messageSource;
 
@@ -41,7 +44,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	 */
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ApiResponse> handleAllExceptions(Exception exception, WebRequest request) {
-		exception.printStackTrace();
+		log.info("",exception);
 		return new ResponseEntity<>(new ErrorResponse("something has been wrong"), HttpStatus.BAD_REQUEST);
 	}
 
@@ -60,7 +63,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	@ExceptionHandler(MailSendException.class)
 	public final ResponseEntity<ApiResponse> handleAccessDeniedException(MailSendException expiredJwtException,
 			WebRequest request) {
-		expiredJwtException.printStackTrace();
+		log.info("",expiredJwtException);
 		return new ResponseEntity<>(new ErrorResponse("you are not authorized to view this page"),
 				HttpStatus.BAD_REQUEST);
 	}

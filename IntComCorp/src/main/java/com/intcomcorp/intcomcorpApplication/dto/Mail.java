@@ -2,6 +2,12 @@ package com.intcomcorp.intcomcorpApplication.dto;
 
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
 public class Mail {
 
     private String from;
@@ -9,39 +15,5 @@ public class Mail {
     private String subject;
     private Map<String, Object> model;
 
-    public Mail() {
-
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public Map<String, Object> getModel() {
-        return model;
-    }
-
-    public void setModel(Map<String, Object> model) {
-        this.model = model;
-    }
+   
 }

@@ -3,11 +3,16 @@ package com.intcomcorp.intcomcorpApplication.dto.request;
 import java.io.Serializable;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class HostInterfaces implements Serializable {
 
 	private static final long serialVersionUID = -8446868068206601166L;

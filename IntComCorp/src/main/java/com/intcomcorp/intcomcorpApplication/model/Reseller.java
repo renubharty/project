@@ -1,5 +1,6 @@
 package com.intcomcorp.intcomcorpApplication.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,9 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -29,6 +27,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+
+
 public class Reseller {
 
 	@Id
@@ -49,23 +49,18 @@ public class Reseller {
 	@Email(message = "Email shoul be in proper format")
 	@NotEmpty
 	private String email;
-	
 	@Column(length = 32 ,name = "active")
 	private boolean isActive = true;
 	@Transient
-	private List<String> orgIds;
-
+	private String password;
+	@OneToMany(mappedBy = "reseller",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private Set<User> userList  =  new HashSet<>();
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "org_reseller", joinColumns = {
-			@JoinColumn(name = "reseller_id", referencedColumnName = "id", nullable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "org_id", referencedColumnName = "id", nullable = false) })
-	Set<Organization> orgSet = new HashSet<>();
-
+	@OneToMany(mappedBy = "reseller", fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
+	private Set<Inventory> inventoryList = new HashSet<>();
 	
-	/*
-	 * @OneToMany(mappedBy = "reseller", fetch = FetchType.EAGER, cascade =
-	 * CascadeType.ALL) private Set<Inventory> inventorySet = new HashSet<>();
-	 */
+	@Transient
+	private List<Long> userIds = new ArrayList<>();
+	
 
 }
