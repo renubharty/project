@@ -46,8 +46,6 @@ public class Inventory {
 	@NotBlank
 	private String model;
 	@NotBlank
-	private String vendor;
-	@NotBlank
 	@Column(name = "serial_number")
 	private String serialNumber;
 	@Transient

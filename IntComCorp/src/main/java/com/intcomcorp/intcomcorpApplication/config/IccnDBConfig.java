@@ -39,7 +39,8 @@ public class IccnDBConfig {
 			@Qualifier("dataSource") DataSource dataSource) {
 		HashMap<String, Object> properties = new HashMap<>();
 		properties.put("hibernate.hbm2ddl.auto", "update");
-		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		//properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
 		return builder.dataSource(dataSource).properties(properties)
 				.packages("com.intcomcorp.intcomcorpApplication.model").build();
 	}
@@ -51,6 +52,39 @@ public class IccnDBConfig {
 		return new JpaTransactionManager(entityManagerFactory);
 	}
 
+	
+	/**
+	 * 
+	 * @param dataSource
+	 * @return
+	 */
+	
+
+	/*
+	 * @Bean(name = "zabbixdataSource")
+	 * 
+	 * @ConfigurationProperties(prefix = "spring.zabbix.datasource") public
+	 * DataSource getZabbixDataSource() { return DataSourceBuilder.create().build();
+	 * }
+	 * 
+	 * 
+	 * @Bean(name = "zabbixentityManagerFactory") public
+	 * LocalContainerEntityManagerFactoryBean
+	 * getZabbixEntityManagerFactory(EntityManagerFactoryBuilder builder,
+	 * 
+	 * @Qualifier("zabbixdataSource") DataSource dataSource) { HashMap<String,
+	 * Object> properties = new HashMap<>();
+	 * properties.put("hibernate.hbm2ddl.auto", "update");
+	 * properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+	 * return builder.dataSource(dataSource).properties(properties)
+	 * .packages("com.intcomcorp.intcomcorpApplication.zabbix.model").build(); }
+	 * 
+	 * 
+	 * @Bean(name = "zabbixtransactionManager") public PlatformTransactionManager
+	 * getTransactionManager(@Qualifier("zabbixentityManagerFactory")
+	 * EntityManagerFactory entityManagerFactory) { return new
+	 * JpaTransactionManager(entityManagerFactory); }
+	 */
 	
 	@Bean
     public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) {

@@ -27,7 +27,6 @@ public class ZabbixApiAlertService {
 			Request request = RequestBuilder.newBuilder().method("alert.get").paramEntry("output", extend)
 					.paramEntry("actionids", actionids).build();
 			response = initializerService.zabbixApi.call(request);
-
 			return new ResponseEntity<>(new ZabbixApiResponse(response), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(new ErrorResponse("zabbix server is unavailable"), HttpStatus.BAD_REQUEST);

@@ -39,7 +39,7 @@ public class HostService {
 	   
 	   
 	public Map<Integer, Host> getAllZabbixHost(boolean isRemove) {
-		Gson gson=new Gson();
+		
 		JsonParser parser;
         JsonElement element;
         JsonObject json;

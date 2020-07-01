@@ -30,17 +30,17 @@ public class MainController {
 	@Autowired
 	private UserService userService;
 
-	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPERADMIN')")
-	@GetMapping("/")
-	public String root(Model model, Principal principal) {
-
-		User user = userService.findByEmail(principal.getName());
-
-		model.addAttribute("user", user);
-		model.addAttribute("user.role", user.getRoles());
-//		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		return "home/home";
-	}
+	/*
+	 * @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPERADMIN')")
+	 * 
+	 * @GetMapping("/") public String root(Model model, Principal principal) {
+	 * 
+	 * User user = userService.findByEmail(principal.getName());
+	 * 
+	 * model.addAttribute("user", user); model.addAttribute("user.role",
+	 * user.getRoles()); // log.info(messageSource.getMessage(Constants.NEW_REQ, new
+	 * Object[] { request.getRequestURI() }, Locale.US)); return "home/home"; }
+	 */
 
 	@GetMapping("/hostgroups")
 	public Model hostgroups(Model model, HttpServletRequest request) {
@@ -105,11 +105,7 @@ public class MainController {
 		return "zabbix/trigger/triggerget";
 	}
 
-	@GetMapping(value = "/hosts")
-	public String getHosts(Model model, HttpServletRequest request) {
-		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		return "hosts/hosts";
-	}
+
 
 	@GetMapping(value = "/hostsget")
 	public String getHostsDetails(Model model, HttpServletRequest request) {

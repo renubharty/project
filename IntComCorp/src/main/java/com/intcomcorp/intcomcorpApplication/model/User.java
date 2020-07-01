@@ -21,6 +21,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +29,7 @@ import lombok.Setter;
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @Getter
 @Setter
+@EqualsAndHashCode
 public class User {
 
 	@Id

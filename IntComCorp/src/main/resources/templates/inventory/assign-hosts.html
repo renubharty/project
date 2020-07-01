@@ -17,167 +17,57 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- IE=edge Compatible
   ================================================== -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-<!-- CSS   
-  ================================================== -->
-
-
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />  
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
 <link th:href="@{/css/main.css}" rel="stylesheet">
 <link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
-
-
 </head>
-
-
 <body>
-
-	<header>
-		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}"> 
-			<img th:src="@{/css/logo.jpg}" />
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link active"
-						th:href="@{/monitoring}">Monitoring</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/inventory}">Inventory</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/configuration}">Configuration</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/administration}">Administration</a></li>
-				</ul>
-
-				<div class="form-inline my-2 my-lg-0">
-					
-
-
-
-				</div>
-			</div>
-		</nav>
-		<div class="main-nav">
-			<nav class="navbar navbar-expand-lg">
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupported2" aria-controls="navbarSupported2"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupported2">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/host/get}">View Customer's Devices</a></li>
-
-
-
-
-
-
-
-					</ul>
-
-
-				</div>
-			</nav>
-		</div>
-	</header>
-
-
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header"></div>
-		</div>
-	</nav>
-<br>
-
-	<div class="container ">
+	<div th:insert="components/navbar :: navigationBar"></div>
+	<br>
+	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 center">
-
 				<h1 class="head-txt">Assign Device</h1>
-				
-				
 				<form th:action="@{/host/assign}" th:object="${userHostDto}"
 					method="post">
 					<h3>
 						<span class="alert-success" th:utext="${successMsg}"></span>
 					</h3>
-			<div class="form-group">
+					<div class="form-group">
 						<label for="orgDropDown">Select Customer</label> <select
-							class="form-control selectpicker" th:field="${userHostDto.customerId}"
-							id="orgDropDown" size="10"  required="required">
+							class="form-control selectpicker"
+							th:field="${userHostDto.customerId}" id="orgDropDown" size="10"
+							required="required">
 							<option value="0" disabled="disabled">Select Customer</option>
 							<option th:each="customer : ${customerList}"
 								th:value="${customer.id}" th:text="${customer.firstName}"></option>
 						</select> <span th:if="${#fields.hasErrors('customerId')}"
 							th:errors="*{customerId}" class="text-danger"></span>
-		    </div>	
-		    
-		    <div class="form-group ">
+					</div>
+					<div class="form-group ">
 						<label for="orgDropDown">Select Devices</label> <select
-							class="form-control selectpicker" th:field="${userHostDto.hostIds}"
-							id="orgDropDown" size="10" multiple="multiple" required="required">
+							class="form-control selectpicker"
+							th:field="${userHostDto.hostIds}" id="orgDropDown" size="10"
+							multiple="multiple" required="required">
 							<option value="0">select Devices</option>
-							<option th:each="host : ${hostList}"
-								th:value="${host.hostId}" th:text="${host.name}"></option>
+							<option th:each="host : ${hostList}" th:value="${host.hostId}"
+								th:text="${host.name}"></option>
 						</select> <span th:if="${#fields.hasErrors('hostIds')}"
 							th:errors="*{hostIds}" class="text-danger"></span>
-		    </div>	
-		    
-		    
-		    <div class="form-group">
-						<button type="submit" class="btn btn-primary btn-block cst-btn-bg">Submit</button>
-
 					</div>
-		    
-		    </form>
-		    
-
-
-
-
-
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block cst-btn-bg">Submit</button>
+				</form>
 			</div>
 		</div>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- All Javascript include here for fast loading of page -->
-	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
-	<script th:src="@{/js/popper.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/custom.js}"></script>
-	<script th:src="@{/js/common.js}"></script>
-	<script th:src="@{/js/bootstrap-select.min.js}"></script>>
+	<script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="/js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/custom.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
 </body>

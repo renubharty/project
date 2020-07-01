@@ -1,14 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<!--<![endif]-->
-
 <head>
-
 <!-- Basic Page Needs
   ================================================== -->
 <meta charset="utf-8">
@@ -23,367 +16,209 @@
 <!-- IE=edge Compatible
   ================================================== -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
 <!-- CSS
   ================================================== -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/main.css" type="text/css">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+	rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 </head>
+   <style>
+       .warning-bg {
+	background-color: #FFC859;
+}
+   
+.average-bg {
+	background-color: #FFA059;
+}
+
+.high-bg {
+	background-color: #E97659;
+}
+
+.info-bg {
+	background-color: #7499FF;
+}
+   
+   </style>
 
 <body>
 
-	<header>
-		<nav class="navbar navbar-expand-lg">
-          <a class="navbar-brand logo" href="#">
-               <img th:src="@{/css/logo.jpg}" />
-            </a>
+
+	<div th:insert="components/navbar :: navigationBar"></div>
 
 
+	<div class="right-section ml-2">
 
+		<h2 class="heading pt-3">Global View</h2>
 
-			
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-			</button>
+		<div class="row mx-0 bg-white mt-3 mb-4 cust-box-shadow">
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link active"
-						th:href="@{/monitoring}">Monitoring</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/inventory}">Inventory</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/configuration}">Configuration</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/administration}">Administration</a></li>
-						
-						<li class="nav-item"><a class="nav-link"
-						th:href="@{/user/registration}">User</a></li>
-				</ul>
+			<h2 class="w-100 p-2 sub-heading">Global Networks Problems</h2>
+			<ul class="disaster-section">
+				<li class="red-circle"><a href="#"> Disaster 2 </a></li>
+				<li class="orange"><a href="#"> Disaster 2 </a></li>
 
-			<div class="form-inline my-2 my-lg-0">
-					
-					<div class="header-right">
-						<ul>
-							<li><a th:text="${user.firstName}"><i class="fa fa-user"></i></a>
-								<table>
-									<tbody th:each="role : ${user.roles}" th:remove="tag">
-										<tr>
-											<td th:text="${role.name}">...</td>
-										</tr>
-									</tbody>
-								</table></li>
-							<li><a th:href="@{/logout}"><i class="fa fa-logout"></i>Logout</a></li>
-						</ul>
+				<li class="yellow"><a href="#"> Disaster 2 </a></li>
 
-					</div>
+				<li class="purple"><a href="#"> Disaster 2 </a></li>
 
+				<li class="blue"><a href="#"> Disaster 2 </a></li>
 
-				</div>
-			</div>
-		</nav>
-		<div class="main-nav">
-			<nav class="navbar navbar-expand-lg">
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupported2" aria-controls="navbarSupported2"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupported2">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/}">Dashboard</a></li>
-					<!-- 	<li class="nav-item"><a class="nav-link" href="#">Problems</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Overview</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Web</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Data</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Graphs</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Screen</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Maps</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Discovery</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">Services</a>
-						</li> -->
-
-
-					</ul>
-
-
-				</div>
-			</nav>
-		</div>
-	</header>
-
-
-	<section class="wrapper">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-12">
-				
-					<div class="bread-crumb">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Global
-									View</li>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-10 col-md-8">
-					<div class="row">
-						<div class="col-xl-5 col-md-12">
-							<div class="system-info">
-								<h2>System Information</h2>
-								<div class="custom-table">
-									<table class="table">
-										<thead>
-											<tr>
-												<th>Parameter</th>
-												<th>Value</th>
-												<th>Details</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Zabbix server is running</td>
-												<td>Yes</td>
-												<td>2/02/139</td>
-											</tr>
-											<tr>
-												<td>Number of hosts</td>
-												<td>140</td>
-												<td>2/02/139</td>
-											</tr>
-											<tr>
-												<td>Zabbix server is running</td>
-												<td>249</td>
-												<td>2/02/139</td>
-											</tr>
-											<tr>
-												<td>Zabbix server is running</td>
-												<td>11</td>
-												<td>2/02/139</td>
-											</tr>
-											<tr>
-												<td>Zabbix server is running</td>
-												<td>0.05</td>
-												<td>2/02/139</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-7 col-md-12">
-							<div class="container">
-								<div class="row total-count-block">
-									<div class="col">
-										<div class="total-col green-bg">
-											<span class="count">1</span>
-											<h3>Available</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col red-bg">
-											<span class="count">0</span>
-											<h3>Not Available</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col gray-bg">
-											<span class="count">0</span>
-											<h3>Unknown</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col white-bg">
-											<span class="count">1</span>
-											<h3>Total</h3>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="container">
-								<div class="row total-count-block">
-									<div class="col">
-										<div class="total-col red-bg">
-											<span class="count">0</span>
-											<h3>Director</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col red2-bg">
-											<span class="count">2</span>
-											<h3>High</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col yellow2-bg">
-											<span class="count">4</span>
-											<h3>Average</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col yellow-bg">
-											<span class="count">6</span>
-											<h3>Warring</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col blue-bg">
-											<span class="count">1</span>
-											<h3>Information</h3>
-										</div>
-									</div>
-									<div class="col">
-										<div class="total-col gray-bg">
-											<span class="count">1</span>
-											<h3>Not Fixed</h3>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 
-					<div sec:authorize="hasRole('ROLE_ADMIN')">
-             -->
-						<!--        <div sec:authorize="hasRole('ROLE_ADMIN')">
-  This content is only shown to admin.
-</div> -->
-						<!--     Logged user: <span sec:authentication="name">Bob</span>
-Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> -->
-
-						<table>
-							<tbody th:each="role : ${user.roles}" th:remove="tag">
-								<tr>
-									<div th:switch="${role.name}">
-										<p th:case="ROLE_ADMIN">Logged as admin</p>
-										<p th:case="ROLE_USER">Logged as user</p>
-
-									</div>
-								</tr>
-
-							</tbody>
-						</table>
-
-
-						<div class="col-sm-12">
-							<div class="problems-block">
-								<h2>Problems</h2>
-								<div class="custom-table table-responsive">
-									<table class="table">
-										<thead>
-											<tr>
-												<th>Time</th>
-												<th>Info</th>
-												<th>Host</th>
-												<th>Problem • Severity</th>
-												<th>Duration</th>
-												<th>Ack</th>
-												<th>Actions</th>
-												<th>Tags</th>
-											</tr>
-										</thead>
-
-										<tbody th:each="role : ${user.roles}">
-											<td th:text="${role.name}"></td>
-											<td><span th:if="${role.name =='ROLE_ADMIN'}">
-													<tr>
-														<td>00:05:22</td>
-														<td>&nbsp;</td>
-														<td>Renu_System</td>
-														<td class="red-bg">Unavailable by ICMP ping</td>
-														<td>9h 50m 2s</td>
-														<td><span class="red">No</span></td>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
-													</tr>
-											</span> <span th:unless="${role.name == 'ROLE_USER'}">
-													<tr>
-														<td>00:05:22</td>
-														<td>&nbsp;</td>
-														<td>Zabbix server</td>
-														<td class="blue-bg">Unavailable by ICMP ping</td>
-														<td>9h 50m 2s</td>
-														<td><span class="red">No</span></td>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
-													</tr>
-
-													<tr>
-														<td>00:05:22</td>
-														<td>&nbsp;</td>
-														<td>Renu_System</td>
-														<td class="blue-bg">Unavailable by ICMP ping</td>
-														<td>9h 50m 2s</td>
-														<td><span class="red">No</span></td>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
-													</tr>
-													<tr>
-														<td>00:05:22</td>
-														<td>&nbsp;</td>
-														<td>GW110</td>
-														<td class="blue-bg">Unavailable by ICMP ping</td>
-														<td>9h 50m 2s</td>
-														<td><span class="red">No</span></td>
-														<td>&nbsp;</td>
-														<td>&nbsp;</td>
-													</tr>
-											</span></td>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="col-xl-2 col-md-4">
-					<div class="watch-section">
-						<canvas id="canvas" width="180" height="180">
-                                </canvas>
-					</div>
-					<div class="map-section">
-						<h2>Favourite Maps</h2>
-						<p>No Maps Added</p>
-					</div>
-					<div class="graph-section">
-						<h2>Favourite Graphs</h2>
-						<p>No Graphs Added</p>
-					</div>
-				</div>
-			</div>
+				<li class="gray"><a href="#"> Disaster 2 </a></li>
+			</ul>
 
 		</div>
 
+		<div class="row mx-0 bg-white mt-3 mb-4 cust-box-shadow">
+
+			<h2 class="w-100 p-2 sub-heading">Global Networks Problems by
+				Category</h2>
+			<ul class="disaster-section category">
+				<li><a href="#"> <img th:src="@{/css/wlan.png}" /> <br />
+						WLAN
+
+				</a> <a href="#"> <img th:src="@{/css/Ethernet.png}" /> <br />
+						Ethernet Edge
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/Distribution.png}" /><br />
+						Distribution/Core
+
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/gateway.png}" /> <br />
+						Gateway
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/outdoor.png}" /><br />
+						Outdoor Wi-Fi
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/broadband.png}" /> <br />
+						Broadband
+
+				</a></li>
 
 
-	</section>
+			</ul>
 
+		</div>
+
+		<div class="row mx-0 bg-white mt-3 mb-4 cust-box-shadow">
+			<h2 class="w-100 p-2 sub-heading">Global System Information</h2>
+			<ul class="disaster-section category">
+				<li>Zabbix server running </a>
+				</li>
+
+				<li><a href="#"> Number of hosts </a></li>
+
+				<li><a href="#"> Server running </a></li>
+			</ul>
+		</div>
+		
+		<!-- Problem Section Start -->
+		
+		<div class="col-sm-12">
+			<div class="problems-block">
+				<h2>Problems</h2>
+				<div class="custom-table table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Time</th>
+								<th>Severity</th>
+								<th>Status</th>
+								<th>Host</th>
+								<th>Problem</th>
+								<th>Duration</th>
+								<th>Ack</th>
+							</tr>
+						</thead>
+
+						<tbody th:each="problem : ${problemList}">
+							
+									<tr>
+										<td th:text="${problem.clock}"></td>
+								<th:block th:switch="${problem.severity}">
+									<div th:case="'1'">
+										<td class = "info-bg">Information</td>
+									</div>
+									<div th:case="'2'">
+										<td class = "warning-bg">Warning</td>
+									</div>
+									<div th:case="'3'">
+										<td class ="average-bg">Average</td>
+									</div>
+									
+									<div th:case="'4'">
+										<td class = 'high-bg'>High</td>
+									</div>
+								</th:block>
+
+
+								<td><span class="red">Problem</td>
+										<td th:text="${problem.hostName}"></td>
+										<td th:text="${problem.description}"></td>
+										<td th:text="${problem.period}"></td>
+										
+										<th:block th:switch="${problem.acknowledge}">
+									<div th:case="'1'">
+										<td>Yes</td>
+									</div>
+									<div th:case="'0'">
+										<td><span class="red">No</td>
+									</div>
+									</th:block>
+									   
+									</tr>
+							
+							</span></td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+
+				"columnDefs" : [ {
+					className : "my_class",
+					"targets" : [ 0 ]
+				} ],
+
+				language : {
+					"search" : '<i class="fa fa-search"></i>',
+					searchPlaceholder : "Search records",
+					paginate : {
+						next : '<i class="fa fa-angle-right"></i>',
+						previous : '<i class="fa fa-angle-left"></i>'
+					}
+				},
+				"searching" : false,
+				"lengthChange" : false,
+				"paging" : true,
+				"info" : false
+			}
+
+			);
+		});
+	</script>
 
 	<!-- All Javascript include here for fast loading of page -->
-	<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
-	<script type="text/javascript" src="js/popper.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/custom.js"></script>
+	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
 </body>
-
 </html>

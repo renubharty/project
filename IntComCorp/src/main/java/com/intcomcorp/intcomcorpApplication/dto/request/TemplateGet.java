@@ -14,7 +14,9 @@ public class TemplateGet {
 	private String output;
 	private Filter filter;
 
-	@Data
+	@Getter
+	@Setter
+	@NoArgsConstructor
 	private class Filter {
 		private Set<String> host;
 	}

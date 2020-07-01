@@ -1,9 +1,12 @@
 package com.intcomcorp.intcomcorpApplication.service.impl;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import com.intcomcorp.intcomcorpApplication.model.Role;
 import com.intcomcorp.intcomcorpApplication.model.User;
 import com.intcomcorp.intcomcorpApplication.service.UserService;
 import com.intcomcorp.intcomcorpApplication.utils.RandomUniquePassword;
+import com.intcomcorp.intcomcorpApplication.utils.Util;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -73,12 +77,12 @@ public class UserServiceImpl implements UserService {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
 	
-	public List<User> getAllCustomer(){
-		List<User> custList =	userRepository.findAll();
-		List<User> filteredList =  new ArrayList<User>();
-		 custList.forEach(cust ->{
-			cust.getRoles().forEach(role ->{
-				
+	public List<User> getAllCustomer() {
+		List<User> custList = userRepository.findAll();
+		List<User> filteredList = new ArrayList<User>();
+		custList.forEach(cust -> {
+			cust.getRoles().forEach(role -> {
+
 				if (role.getName().equalsIgnoreCase("ROLE_USER")) {
 					filteredList.add(cust);
 				}
@@ -86,21 +90,21 @@ public class UserServiceImpl implements UserService {
 		});
 
 		return filteredList;
-		}
+	}
 	
 	
-	public List<User> getAllCustomerByHost(){
-		List<User> custList =	userRepository.findAll();
-		List<User> filteredList =  new ArrayList<User>();
-		 custList.forEach(cust ->{
-			
-			 if (!cust.getUsersHostList().isEmpty()) {
-				 filteredList.add(cust);
-			 }
+	public List<User> getAllCustomerByHost() {
+		List<User> custList = userRepository.findAll();
+		List<User> filteredList = new ArrayList<User>();
+		custList.forEach(cust -> {
+
+			if (!cust.getUsersHostList().isEmpty()) {
+				filteredList.add(cust);
+			}
 		});
 
 		return filteredList;
-		}
+	}
 	
 	
 	public User getUserById(Long id) {
@@ -139,4 +143,28 @@ public User  saveReseller(Reseller reseller) {
 		return user;
 	    
 	}
+
+public Set<User> getLoggedInUserHost(Principal principal) {
+	List<User> custList = userRepository.findAll();
+	List<User> filteredList = new ArrayList<User>();
+	Set<User> loggedInUserList = new HashSet<User>();
+	custList.forEach(cust -> {
+
+		if (!cust.getUsersHostList().isEmpty()) {
+			filteredList.add(cust);
+		}
+		filteredList.forEach(customer ->{
+			if (customer.getEmail().equalsIgnoreCase(Util.currentUserName(principal))) {
+				loggedInUserList.add(customer);
+			}
+		});
+	});
+
+	return loggedInUserList;
+}
+
+
+
+
+
 }

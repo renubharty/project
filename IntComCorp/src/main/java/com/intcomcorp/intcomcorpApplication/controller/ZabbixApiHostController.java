@@ -1,3 +1,4 @@
+
 package com.intcomcorp.intcomcorpApplication.controller;
 
 import java.util.Locale;
@@ -57,7 +58,8 @@ public class ZabbixApiHostController {
 		return zabbixApiHostService.hostsDetails(hostNames);
 	}
 
-	// Retrieve names of the groups host but no host details themselves
+	// Retrieve names of the gro
+	
 	/**
 	 * 
 	 * @param hostid
@@ -83,7 +85,8 @@ public class ZabbixApiHostController {
 	 * @param request
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SUPERADMIN')")
+	//("hasAnyAuthority('SUPERADMIN')")
 	@PostMapping("/createhost")
 	public ResponseEntity<?> hostCreate(@RequestBody JsHostCreate createHostRequest, HttpServletRequest request) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));

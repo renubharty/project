@@ -31,84 +31,21 @@
 
 <!-- Favicons
 	================================================== -->
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
-	<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
 
 </head>
 
 <body>
 
-	<header>
-		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}">
-			<img th:src="@{/css/logo.jpg}" />
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link"
-						th:href="@{/monitoring}">Monitoring</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Inventory</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/configuration}">Configuration</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Administration</a>
-					</li>
-				</ul>
-
-				<div class="form-inline my-2 my-lg-0">
-					
-					<div class="header-right">
-						<ul>
-
-							<li><a th:href="@{/logout}"><i class="fa fa-logout"></i>Logout</a></li>
-						</ul>
-					</div>
-
-
-				</div>
-			</div>
-		</nav>
-		<div class="main-nav">
-			<nav class="navbar navbar-expand-lg">
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupported2" aria-controls="navbarSupported2"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupported2">
-					<ul class="navbar-nav mr-auto">
-
-						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/hosts}">Devices</a></li>
-
-						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/host/show}">Assign Device</a></li>
-
-
-					</ul>
-
-
-				</div>
-			</nav>
-		</div>
-	</header>
+	<div th:insert="components/navbar :: navigationBar"></div>
 
 
 	<section class="wrapper">
 		<div class="container-fluid">
-			
+
 
 			<div class="row">
 				<div class="col-sm-12">
@@ -123,20 +60,25 @@
 								<div class="tab-form-section">
 									<div class="col-md-6 center is-shady">
 
-										<form id="createhost">
+										<form id="createhost" th:object="${device}">
 
 
 											<div class="form-group">
 												<label for="hostname" class="col-sm-3 col-form-label">
-													Device Name</label> <input type="text" class="form-control" id="hostname"
-													placeholder="Enter Host Name" name="hostname">
+													Device Name</label> <input type="text" class="form-control"
+													id="hostname" placeholder="Enter Host Name" name="hostname">
 											</div>
 
 
 											<div class="form-group ">
-												<label for="groupid" class="col-sm-2 col-form-label">Groups</label>
-												<input type="text" class="form-control" id="groupid"
-													placeholder="Enter Group id" name="groupid">
+												<label for="groupid" class="col-sm-2 col-form-label">
+													Group</label> <select class="form-control selectpicker"
+													th:field="${device.groupId}" id="groupid" size="10">
+													<option value="0" disabled="disabled">Select Group</option>
+													<option th:each="group : ${device.groupsList}"
+														th:value="${group.groupid}" th:text="${group.name}"></option>
+												</select> <span th:if="${#fields.hasErrors('groupId')}"
+													th:errors="*{groupId}" class="text-danger"></span>
 											</div>
 
 
@@ -169,9 +111,18 @@
 
 
 																<div class="form-group">
-																	<label for="port">Port</label> <input type="text"
-																		id="port" class="form-control" placeholder="10050"
-																		name="port">
+																	<label for="port">Port</label> <select
+																		class="form-control selectpicker"
+																		th:field="${device.port}" id="port" size="10">
+																		<option value="0" disabled="disabled">Select
+																			Port</option>
+																		<option th:value="161" th:text="SNMP"></option>
+
+																		<option th:value="10050" th:text="OTHER"></option>
+																	</select> <span th:if="${#fields.hasErrors('port')}"
+																		th:errors="*{port}" class="text-danger"></span>
+
+
 																</div>
 															</div>
 
@@ -218,10 +169,15 @@
 
 											<div class="form-group ">
 												<label for="templateid" class="col-sm-2 col-form-label">
-													Template</label> <input type="text" class="form-control"
-													id="templateid" placeholder="Enter Template id"
-													name="templateid">
-
+													Template</label> <select class="form-control selectpicker"
+													th:field="${device.tmpId}" id="templateid" size="10">
+													<option value="0" disabled="disabled">Select
+														Template</option>
+													<option th:each="template : ${device.templatesList}"
+														th:value="${template.hostid}" th:text="${template.name}"></option>
+												</select> <span th:if="${#fields.hasErrors('tmpId')}"
+													th:errors="*{tmpId}" class="text-danger"></span>
+                                                   
 											</div>
 
 
@@ -255,8 +211,9 @@
 												</div>
 											</div>
 
-											<button   type="submit" class="btn btn-primary btn-block cst-btn-bg">Submit</button>
-											
+											<button type="submit"
+												class="btn btn-primary btn-block cst-btn-bg">Submit</button>
+
 										</form>
 
 
@@ -283,6 +240,7 @@
 	<script th:src="@{/js/popper.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/hostcreate.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>
 
 </body>
 

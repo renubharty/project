@@ -1,6 +1,8 @@
 package com.intcomcorp.intcomcorpApplication.service;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -19,4 +21,6 @@ public interface UserService extends UserDetailsService {
 	 User getUserById(Long id);
 	 public boolean updateUserHosts(User user);
 	 User saveReseller(Reseller reseller);
+	 
+	 public Set<User> getLoggedInUserHost(Principal principal);
 }

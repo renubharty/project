@@ -1,5 +1,7 @@
 package com.intcomcorp.intcomcorpApplication.controller;
 
+import static com.intcomcorp.intcomcorpApplication.utils.Util.currentUserName;
+import static com.intcomcorp.intcomcorpApplication.utils.Util.hasRole;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -28,6 +30,7 @@ import com.intcomcorp.intcomcorpApplication.model.Reseller;
 import com.intcomcorp.intcomcorpApplication.model.User;
 import com.intcomcorp.intcomcorpApplication.service.EmailService;
 import com.intcomcorp.intcomcorpApplication.service.UserService;
+import com.intcomcorp.intcomcorpApplication.service.impl.ProblemService;
 import com.intcomcorp.intcomcorpApplication.service.impl.ResellerService;
 import com.intcomcorp.intcomcorpApplication.utils.Constants;
 import com.intcomcorp.intcomcorpApplication.utils.RandomUniquePassword;
@@ -47,6 +50,9 @@ public class ResellerController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProblemService problemService;
 	
 	@Value("${email.from}")
 	private String fromEmail;
@@ -69,10 +75,9 @@ public class ResellerController {
 			((UserDetails) principal).getAuthorities().forEach(role -> {
 				String loginUserRole = role.getAuthority();
 			});
-			System.out.println("username " + username);
+			
 		} else {
-			String username = principal.toString();
-			System.out.println("username " + username);
+			
 		}
 		return "administration/reseller";
 	}
@@ -105,7 +110,7 @@ public class ResellerController {
 			emailModel.put("user", user);
 			emailModel.put("userPassword", reseller.getPassword());
 			emailModel.put("signature", "http://intcomcorp.com");
-			final String URL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+			final String URL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/intcomcorpApplication";
 			emailModel.put("resetUrl", URL + "/reset-password?token=" + passwordResetDto.getToken());
 			emailDto.setModel(emailModel);
 			emailService.sendMail(emailDto);
@@ -118,11 +123,16 @@ public class ResellerController {
 		return "administration/reseller";
 	}
 
-	@GetMapping("/getreseller")
+	@GetMapping("/get")
 	public String getReseller(Model model, HttpServletRequest request) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		List<Reseller> resList = resellerService.getAll();
-		model.addAttribute("resellerList", resList);
+		if (hasRole("ROLE_RESELLER")) {
+			model.addAttribute("resellerList",
+					resellerService.findByEmail(currentUserName(request.getUserPrincipal())));
+		} else {
+			List<Reseller> resList = resellerService.getAll();
+			model.addAttribute("resellerList", resList);
+		}
 		log.info("ResellerController getReseller method finished");
 		return "administration/reseller-list";
 	}

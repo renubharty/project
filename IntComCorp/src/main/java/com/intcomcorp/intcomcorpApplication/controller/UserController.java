@@ -105,7 +105,7 @@ public class UserController {
 			emailModel.put("user", user);
 			emailModel.put("userPassword", userDto.getPassword());
 			emailModel.put("signature", "http://intcomcorp.com");
-			final String URL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+			final String URL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/intcomcorpApplication";
 			emailModel.put("resetUrl", URL + "/reset-password?token=" + passwordResetDto.getToken());
 			emailDto.setModel(emailModel);
 			emailService.sendMail(emailDto);

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.intcomcorp.intcomcorpApplication.dto.TemplatesDto;
 import com.intcomcorp.intcomcorpApplication.model.Reseller;
 @Repository
 public interface ResellerRepository extends JpaRepository<Reseller, Long> {
@@ -28,6 +29,8 @@ public interface ResellerRepository extends JpaRepository<Reseller, Long> {
 	@Query(value = "DELETE FROM reseller where id = :resId"
 			,nativeQuery = true)
 	public void deleteFromResTab(@Param("resId") Long resId);
+	
+	
 	
 	
 	

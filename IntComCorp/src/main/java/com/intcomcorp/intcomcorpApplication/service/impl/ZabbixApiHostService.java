@@ -31,9 +31,9 @@ public class ZabbixApiHostService {
 	public ResponseEntity<?> hostsDetails(String[] hosts) {
 		JSONObject response = null;
 	if (initializerService.loginValidate()) {
-			Request request = RequestBuilder.newBuilder().method("host.get").paramEntry("filter", hosts).build();
+			Request request = RequestBuilder.newBuilder().method("host.get")
+					          .paramEntry("filter", hosts).build();
 			response = initializerService.zabbixApi.call(request);
-
 			return new ResponseEntity<>(new ZabbixApiResponse(response), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(new ErrorResponse("zabbix server is unavailable"), HttpStatus.BAD_REQUEST);
@@ -72,8 +72,10 @@ public class ZabbixApiHostService {
 		if (initializerService.loginValidate()) {
 			Request request = RequestBuilder.newBuilder().method("host.create").paramEntry("host", hostCreate.getHost())
 					.paramEntry("interfaces", hostCreate.getHostInterface())
-					.paramEntry("groups", hostCreate.getHostGroup()).paramEntry("tags", hostCreate.getHostTag())
-					.paramEntry("templates", hostCreate.getTemplates()).paramEntry("macros", hostCreate.getHostMacro())
+					.paramEntry("groups", hostCreate.getHostGroup())
+					.paramEntry("tags", hostCreate.getHostTag())
+					.paramEntry("templates", hostCreate.getTemplates())
+					.paramEntry("macros", hostCreate.getHostMacro())
 					.paramEntry("inventory_mode", hostCreate.getInventoryMode())
 					.paramEntry("inventory", hostCreate.getHostInventory()).build();
 			response = initializerService.zabbixApi.call(request);

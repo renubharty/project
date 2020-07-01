@@ -66,23 +66,20 @@ public class InventoryController {
 	}
 
 	@PostMapping("add")
-	public String saveInventory(Model model, @ModelAttribute("inventory") @Valid Inventory inventory,
-			BindingResult result, HttpServletRequest request) {
+	public String saveInventory(@ModelAttribute("inventory") @Valid Inventory inventory,
+			BindingResult result, HttpServletRequest request,Model model) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
 
-		if (result.hasErrors()) {
-			return showinventory(model, request);
-		}
 		
-		Reseller res = resellerService.findById(inventory.getResId());
-		System.out.println("<<<<<>>>>>>>>>"  +res.getId());
-		inventory.setReseller(res);
-		if (!inventoryServicce.createInventory(inventory)) {
-			return showinventory(model, request);
-		}
-		// inventoryServicce.saveInvWithDistributor(org.getId(),inv.getId());
+		  if (result.hasErrors()) { return showinventory(model, request); }
+		  Reseller res = resellerService.findById(inventory.getResId());
+		  inventory.setReseller(res);
+		
+		  if (!inventoryServicce.createInventory(inventory)) { return
+		  showinventory(model, request); }
+		 
+		
 		model.addAttribute("inventory", new Inventory());
-
 		model.addAttribute("successMsg", "Inventory Created Successfully");
 		return showinventory(model, request);
 	}

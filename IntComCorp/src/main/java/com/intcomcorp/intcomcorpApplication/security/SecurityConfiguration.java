@@ -23,8 +23,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers().authenticated().and().httpBasic();
-
-		http.csrf().disable().authorizeRequests()
+		http.csrf().disable();
+		http.authorizeRequests()
 				.antMatchers("/registration**", "/forgot-password**", "/reset-password**", "/js/**", "/css/**",
 						"/fonts/**", "/images/**", "/webjars/**", "/v2/api-docs", "/swagger*/**", "/resources/**",
 						"*.jpg", "**/favicon.ico")

@@ -43,81 +43,7 @@
 <body>
 
 
-
-	<header>
-		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand logo" th:href="@{/}">  <img
-				src="/css/logo.jpg" />
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link active"
-						th:href="@{/monitoring}">Monitoring</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/inventory}">Inventory</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/configuration}">Configuration</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/administration}">Administration</a></li>
-				</ul>
-
-				<div class="form-inline my-2 my-lg-0">
-					<div class="search-bar">
-						<input class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
-
-
-
-				</div>
-			</div>
-		</nav>
-		<div class="main-nav">
-			<nav class="navbar navbar-expand-lg">
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupported2" aria-controls="navbarSupported2"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupported2">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link active"
-							th:href="@{/host/show}">Assign Device</a></li>
-
-
-
-
-
-
-
-					</ul>
-
-
-				</div>
-			</nav>
-		</div>
-	</header>
-
-
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header"></div>
-		</div>
-	</nav>
+<div th:insert="components/navbar :: navigationBar"></div>
 
 	<br>
 	<br>
@@ -137,7 +63,7 @@
 											<th>Customer Name</th>
 											<th>Device </th>
 											<th>Device Id</th>
-											<th> </th>
+											<th sec:authorize="hasAnyRole('ROLE_SUPERADMIN','ROLE_RESELLER')">Edit</th>
 
 										</tr>
 									</thead>
@@ -157,7 +83,7 @@
 												</div>
 											</td>
 									
-											<td><a
+											<td sec:authorize="hasAnyRole('ROLE_SUPERADMIN','ROLE_RESELLER')"><a
 												th:href="@{/host/edit/{id}(id=${cust.id})}"
 												class="btn btn-primary round-btn-clc"><i class="fas fa-user-edit ml-2"></i></a></td>
 											
