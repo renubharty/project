@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>DeviceS</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	
+
+	<div class="container">
+		<h2>Device get</h2>
+		<form id="gethost">
+			<div class="form-group">
+				<label for="hostNames">Device Name:</label> <input type="text"
+					class="form-control" id="hostNames" placeholder="Enter Host Name"
+					name="hostNames">
+			</div>
+			
+
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		<br />
+	</div>
+	<table id="location" border='1'>
+		<tr>
+			<th>Macro</th>
+			<th>HostMacroid</th>
+			<th>Value</th>
+		</tr>
+	</table>
+	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/host.js}"></script>
+	
+</body>
+</html>

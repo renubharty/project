@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>International Communications-TLCM</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- IE=edge Compatible
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- CSS
+  ================================================== -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+	rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+</head>
+   <style>
+       .warning-bg {
+	background-color: #FFC859;
+}
+   
+.average-bg {
+	background-color: #FFA059;
+}
+
+.high-bg {
+	background-color: #E97659;
+}
+
+.info-bg {
+	background-color: #7499FF;
+}
+   
+   </style>
+
+<body>
+
+
+	<div th:insert="components/navbar :: navigationBar"></div>
+
+
+	<div class="right-section ml-2">
+
+		<h2 class="heading pt-3">Global View</h2>
+
+		<div class="row mx-0 bg-white mt-3 mb-4 cust-box-shadow">
+
+			<h2 class="w-100 p-2 sub-heading">Global Networks Problems</h2>
+			<ul class="disaster-section">
+				<li class="red-circle"><a href="#"> Disaster 2 </a></li>
+				<li class="orange"><a href="#"> Disaster 2 </a></li>
+
+				<li class="yellow"><a href="#"> Disaster 2 </a></li>
+
+				<li class="purple"><a href="#"> Disaster 2 </a></li>
+
+				<li class="blue"><a href="#"> Disaster 2 </a></li>
+
+				<li class="gray"><a href="#"> Disaster 2 </a></li>
+			</ul>
+
+		</div>
+
+		<div class="row mx-0 bg-white mt-3 mb-4 cust-box-shadow">
+
+			<h2 class="w-100 p-2 sub-heading">Global Networks Problems by
+				Category</h2>
+			<ul class="disaster-section category">
+				<li><a href="#"> <img th:src="@{/css/wlan.png}" /> <br />
+						WLAN
+
+				</a> <a href="#"> <img th:src="@{/css/Ethernet.png}" /> <br />
+						Ethernet Edge
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/Distribution.png}" /><br />
+						Distribution/Core
+
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/gateway.png}" /> <br />
+						Gateway
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/outdoor.png}" /><br />
+						Outdoor Wi-Fi
+				</a></li>
+
+				<li><a href="#"> <img th:src="@{/css/broadband.png}" /> <br />
+						Broadband
+
+				</a></li>
+
+
+			</ul>
+
+		</div>
+
+		<div class="row mx-0 bg-white mt-3 mb-4 cust-box-shadow">
+			<h2 class="w-100 p-2 sub-heading">Global System Information</h2>
+			<ul class="disaster-section category">
+				<li>Zabbix server running </a>
+				</li>
+
+				<li><a href="#"> Number of hosts </a></li>
+
+				<li><a href="#"> Server running </a></li>
+			</ul>
+		</div>
+		
+		<!-- Problem Section Start -->
+		
+		<div class="col-sm-12">
+			<div class="problems-block">
+				<h2>Problems</h2>
+				<div class="custom-table table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Time</th>
+								<th>Severity</th>
+								<th>Status</th>
+								<th>Host</th>
+								<th>Problem</th>
+								<th>Duration</th>
+								<th>Ack</th>
+							</tr>
+						</thead>
+
+						<tbody th:each="problem : ${problemList}">
+							
+									<tr>
+										<td th:text="${problem.clock}"></td>
+								<th:block th:switch="${problem.severity}">
+									<div th:case="'1'">
+										<td class = "info-bg">Information</td>
+									</div>
+									<div th:case="'2'">
+										<td class = "warning-bg">Warning</td>
+									</div>
+									<div th:case="'3'">
+										<td class ="average-bg">Average</td>
+									</div>
+									
+									<div th:case="'4'">
+										<td class = 'high-bg'>High</td>
+									</div>
+								</th:block>
+
+
+								<td><span class="red">Problem</td>
+										<td th:text="${problem.hostName}"></td>
+										<td th:text="${problem.description}"></td>
+										<td th:text="${problem.clock}"></td>
+										
+										<th:block th:switch="${problem.acknowledge}">
+									<div th:case="'1'">
+										<td>Yes</td>
+									</div>
+									<div th:case="'0'">
+										<td><span class="red">No</td>
+									</div>
+									</th:block>
+									   
+									</tr>
+							
+							</span></td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+
+				"columnDefs" : [ {
+					className : "my_class",
+					"targets" : [ 0 ]
+				} ],
+
+				language : {
+					"search" : '<i class="fa fa-search"></i>',
+					searchPlaceholder : "Search records",
+					paginate : {
+						next : '<i class="fa fa-angle-right"></i>',
+						previous : '<i class="fa fa-angle-left"></i>'
+					}
+				},
+				"searching" : false,
+				"lengthChange" : false,
+				"paging" : true,
+				"info" : false
+			}
+
+			);
+		});
+	</script>
+
+	<!-- All Javascript include here for fast loading of page -->
+	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+</body>
+</html>

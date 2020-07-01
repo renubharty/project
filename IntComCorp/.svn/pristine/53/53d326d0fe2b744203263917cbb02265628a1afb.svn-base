@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!--<![endif]-->
+<head>
+
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>International Communications-TLCM</title>
+<meta name="description" content="">
+<meta name="author" content="">
+   
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- IE=edge Compatible
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- CSS   
+  ================================================== -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
+
+ 
+
+ 
+ 
+
+
+
+
+</head>
+
+
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<a class="navbar-brand logo" th:href="@{/}"> 
+			<img th:src="@{/css/logo.jpg}" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link active"
+						th:href="@{/monitoring}">Monitoring</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Inventory</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/configuration}">Configuration</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/administration}">Administration</a></li>
+				</ul>
+
+			
+			</div>
+		</nav>
+		<div class="main-nav">
+			<nav class="navbar navbar-expand-lg cst-height">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupported2" aria-controls="navbarSupported2"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupported2">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/reseller/getreseller}">View Reseller</a></li>
+
+
+
+
+
+
+					</ul>
+
+
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+
+
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header"></div>
+		</div>
+	</nav>
+
+	<br>
+
+	<div class="container">
+	<div class="inner-box">
+		<div class="row">
+			<div class="col-md-6 center">
+
+				<h1 class="head-txt">Reseller</h1>
+				<form th:action="@{/reseller/add}" th:object="${reseller}"
+					method="post">
+					<h2>
+						<span class="alert-success" th:utext="${successMsg}"></span>
+					</h2>
+					<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+						error</p>
+
+					<div class="form-group ">
+						<label for="name" class="col-form-label">Name</label> <input
+							type="text" th:field="*{name}" class="form-control" id="name"
+							placeholder="Name"> <span
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+							class="text-danger"></span>
+					</div>
+					<div class="form-group ">
+						<label for="email" class="col-form-label">Email</label> <input
+							type="text" th:field="*{email}" class="form-control" id="email"
+							placeholder="Email"> <span
+							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+							class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="phone" class="col-form-label">Phone</label> <input
+							type="text" id="phone" class="form-control" th:field="*{phone}"
+							placeholder="Phone" /> <span
+							th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+							class="text-danger"></span>
+
+					</div>
+					<div class="form-group">
+						<label for="address" class="col-form-label">Address</label> <textarea
+							type="text" id="Address" class="form-control"
+							th:field="*{address}" placeholder="Address" /> <span
+							th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+							class="text-danger"></span>
+
+					</div>
+
+					<div class="form-group">
+						<label for="city" class="col-form-label">City</label> <input
+							type="text" id="City" class="form-control" th:field="*{city}"
+							placeholder="city" /><span th:if="${#fields.hasErrors('city')}"
+							th:errors="*{city}" class="text-danger"></span>
+
+					</div>
+
+					<div class="form-group">
+						<label for="state" class="col-form-label">State</label> <input
+							type="text" id="State" class="form-control" th:field="*{state}"
+							placeholder="state" /><span
+							th:if="${#fields.hasErrors('state')}" th:errors="*{state}"
+							class="text-danger"></span>
+
+					</div>
+
+					<div class="form-group">
+						<label for="zipcode" class="col-form-label">Zip Code</label> <input
+							type="text" id="zipcode" class="form-control"
+							th:field="*{zipcode}" placeholder="zipcode" /><span
+							th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}"
+							class="text-danger"></span>
+
+					</div>
+
+					
+
+
+
+					
+
+
+						<div class="form-group">
+						<button type="submit" class="btn btn-block btn-primary cst-btn-bg">Submit</button>
+
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- All Javascript include here for fast loading of page -->
+	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/common.js}"></script>
+	<script th:src="@{/js/bootstrap-select.min.js}"></script>>
+</body>
+</html>

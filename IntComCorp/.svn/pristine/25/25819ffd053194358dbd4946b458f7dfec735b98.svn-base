@@ -1,0 +1,393 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+    <meta charset="utf-8">
+    <title>International Communications-TLCM</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- IE=edge Compatible
+  ================================================== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+    <!-- Favicons
+	================================================== -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon.png">
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand logo" href="#">
+                <img src="/css/logo.jpg"/>
+            </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+              </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                          <li class="nav-item active">
+                            <a class="nav-link" href="#">Monitoring</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Inventory</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Reports</a>
+                          </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" href="#">Configuration</a>
+                          </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">Administration</a>
+                          </li>
+                      </ul>
+                    
+                <div class="form-inline my-2 my-lg-0">
+                    
+                   
+                    
+                      
+                    </div>
+  </div>
+        </nav>
+        <div class="main-nav">
+            <nav class="navbar navbar-expand-lg">
+            
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupported2" aria-controls="navbarSupported2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+              </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupported2">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                            <a class="nav-link" href="#">Dashboard</a>
+                      </li>
+                        <li class="nav-item"><a class="nav-link active"
+							th:href="@{/hosts}">Devices</a></li>
+						
+                         <li class="nav-item"><a class="nav-link active"
+							th:href="@{/host/show}">Assign Device</a></li>
+      
+    </ul>
+                    
+                
+  </div>
+        </nav>
+        </div>    
+    </header>
+    
+    
+    <section class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="main-head">
+                       
+                        
+                    </div>                                
+                    
+                </div> 
+                </div> 
+         
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="tab-section">
+                        
+                        <nav class="tabbable">
+                              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#host" role="tab" aria-controls="nav-home" aria-selected="true">Host</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#template" role="tab" aria-controls="nav-profile" aria-selected="false">Templates</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#ipmi" role="tab" aria-controls="nav-profile" aria-selected="false">IPMI</a>
+                               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#tag" role="tab" aria-controls="nav-profile" aria-selected="false">Tags</a>
+                               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#macros" role="tab" aria-controls="nav-profile" aria-selected="false">Macros</a>
+                               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#inventory" role="tab" aria-controls="nav-profile" aria-selected="false">Inventory</a>
+                               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#encryption" role="tab" aria-controls="nav-profile" aria-selected="false">Encryption</a>
+                              </div>
+                            
+                        </nav>
+                            
+                            
+                        <div class="tab-content" id="nav-tabContent">
+                              <div class="tab-pane fade show active" id="host" role="tabpanel" aria-labelledby="nav-home-tab">
+                                  <div class="tab-form-section">
+                                        <div class="col-sm-10">
+                                            
+                        <form>
+                          <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Host Name</label>
+                            <div class="col-sm-6">
+                              <input type="email" class="form-control" id="" placeholder="">
+                            </div>
+                          </div>
+                            <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Visible name</label>
+                            <div class="col-sm-6">
+                              <input type="email" class="form-control" id="" placeholder="">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Groups</label>
+                            <div class="col-xl-6 col-9 pr-1">
+                              <input type="password" class="form-control" id="" placeholder="Password">
+                                <span class="tag">At least one interface must exit.</span>
+                            </div>
+                              <div class="col-xl-3 col-3 pl-1">
+                                <button class="btn select-btn">Select</button>
+                              </div>
+                              
+                          </div>
+                            <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Agent Interface</label>
+                            <div class="col-sm-9">
+                              <div class="agent-section">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>IP address</label>
+                                            <input type="text" class="form-control" placeholder="127.0.0.01">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>DNS Name</label>
+                                            <input type="text" class="form-control" placeholder="127.0.0.01">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row conect-panel">
+                                            <div class="col-sm-6 pr_5">
+                                                <div class="form-group">
+                                                    <label>DNS Name</label>
+                                                    <div class="server-btn">
+                                            <ul>
+                                                <li><a href="#" class="active" >IP</a></li>
+                                                <li><a href="#" class="" >DNS</a></li>
+                                          </ul>
+                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 pl_5">
+                                                <div class="form-group">
+                                                    <label>Port</label>
+                                                    <input type="text" class="form-control" placeholder="102030">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Default</label>
+                                            <div class="amount_details_radio">
+															<input type="radio" name="radio1" id="radio1" value="" checked="">
+															<label for="radio1">
+																Remove
+															</label>	  	
+								            </div>
+                                                
+                                            
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                    <a href="#" class="add-btn pl-3">Add</a>
+                                </div>
+                                  
+                                  
+                                  
+                              </div>
+                            </div>
+                          </div>
+                            
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Host Name</label>
+                                <div class="col-sm-9">
+                                  <div class="agent-section">
+                                        <a href="#" class="add-btn">Add</a>  
+                                  </div>
+                                </div>
+                          </div>
+
+                            
+                             <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">SNMP Interface</label>
+                                <div class="col-sm-9">
+                                  <div class="agent-section">
+                                        <a href="#" class="add-btn">Add</a>  
+                                  </div>
+                                </div>
+                          </div>
+                            
+                             <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">JMX Interface</label>
+                                <div class="col-sm-9">
+                                  <div class="agent-section">
+                                        <a href="#" class="add-btn">Add</a>  
+                                  </div>
+                                </div>
+                          </div>
+                            
+                             <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">IPMI Interface</label>
+                                <div class="col-sm-9">
+                                  <div class="agent-section">
+                                        <a href="#" class="add-btn">Add</a>  
+                                  </div>
+                                </div>
+                          </div>
+                            
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Description</label>
+                                <div class="col-sm-6">
+                                  <textarea class="form-control" row="8"></textarea>
+                                </div>
+                          </div>
+                            
+                             <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Monitored proxy</label>
+                                <div class="col-sm-6">
+                                  <select>
+                                        <option>(No Proxy)</option>
+                                  </select>
+                                </div>
+                          </div>
+                            
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label">Enabled</label>
+                                <div class="col-sm-6">
+                                  <input class="custom-check" id="remember" type="checkbox">
+                                    <label for="remember">&nbsp;</label>
+                                </div>
+                          </div>
+                            
+                            
+                          <div class="form-group row">
+                              <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                              <button type="submit" class="btn blue-btn">Add</button>
+                                <button type="submit" class="btn reset-btn">Cancel</button>
+                            </div>
+                          </div>
+                        </form>
+                                            
+                                            
+                                      </div>
+                                  </div>
+                                </div>
+
+                            <div class="tab-pane fade" id="template" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div class="tab-form-section">
+                                    <div class="col-sm-10">
+                                    <form>
+                                    <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Linled templates</label>
+                            <div class="col-sm-6">
+                              <input type="email" class="form-control" id="" placeholder="">
+                            </div>
+                          </div>
+                            
+                          <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Link new templates</label>
+                            <div class="col-sm-6 col-9 pr-1">
+                                
+                                    <input type="password" class="form-control" id="" placeholder="Password">
+                                
+                            </div>
+                              <div class="col-sm-3 col-3 pl-1">
+                                <button class="btn select-btn">Select</button>
+                              </div>
+                              
+                              
+                          </div>
+                                        
+                                        <div class="form-group row">
+                              <div class="col-sm-2"></div>
+                            <div class="col-sm-10">
+                              <button type="submit" class="btn blue-btn">Add</button>
+                                <button type="submit" class="btn reset-btn">Cancel</button>
+                            </div>
+                          </div>
+                                        
+                                        
+                                    </form>
+                                    </div>    
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="ipmi" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                aA
+                            </div>
+                            
+                            <div class="tab-pane fade" id="tag" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                aA
+                            </div>
+                            
+                            <div class="tab-pane fade" id="macros" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                aA
+                            </div>
+                            
+                            <div class="tab-pane fade" id="inventory" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                aA
+                            </div>
+                            
+                            <div class="tab-pane fade" id="encryption" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                Aa
+                            </div>
+  
+</div>
+                    
+                    </div>
+                </div>
+            </div> 
+            
+            
+            
+        </div>       
+                
+               
+        
+    </section>
+    
+
+    <!-- All Javascript include here for fast loading of page -->
+    <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+</body>
+
+</html>

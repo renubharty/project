@@ -1,0 +1,14 @@
+#Mail properties. Enable less secure apps if using Gmail id
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.protocol=smtp
+spring.mail.debug=true
+spring.mail.smtp.auth=true
+spring.mail.smtp.starttls.enable=true
+
+#mail credentials
+spring.mail.username=chetutest72@gmail.com
+spring.mail.password=Test$123!
+
+email.subject = Password Reset
+email.from = chetutest72@gmail.com

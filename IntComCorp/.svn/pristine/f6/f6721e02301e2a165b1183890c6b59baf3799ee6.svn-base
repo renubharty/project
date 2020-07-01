@@ -1,0 +1,46 @@
+#Spring Profile name
+spring.profiles:prod
+
+#Server port Number
+server.port=8081
+
+#session timeout in second 
+server.servlet.session.timeout=1000
+
+
+#zabbix Server Details in Development Env
+zabbix.username =Admin
+zabbix.password =activesonor
+zabbix.server.url =http://monitoring.iccnetworking.com/zabbix
+
+  
+#MYSQL SCHEMA
+
+
+
+
+spring.iccn.datasource.jdbcUrl =jdbc:mysql://34.233.172.60:3306/intcomcorp_application?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+spring.iccn.datasource.username =chetu
+spring.iccn.datasource.password =EK&X@@050QvU
+spring.iccn.datasource.driver-class-name=com.mysql.jdbc.Driver 
+
+
+
+#MYSQL ZABBIX SERVER SCHEMA
+spring.zabbix.datasource.jdbcUrl=jdbc:mysql://34.233.172.60:3306/zabbix
+spring.zabbix.datasource.username=zabbix
+spring.zabbix.datasource.password=19w5SGo2!zwa
+
+
+#Email Properties
+spring.mail.default-encoding=UTF-8
+spring.mail.host=smtp.gmail.com
+spring.mail.username=chetutest72@gmail.com
+spring.mail.password=Test$123!
+spring.mail.port=587
+spring.mail.protocol=smtp
+spring.mail.test-connection=false
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+email.subject = Password Reset
+email.from = chetutest72@gmail.com
