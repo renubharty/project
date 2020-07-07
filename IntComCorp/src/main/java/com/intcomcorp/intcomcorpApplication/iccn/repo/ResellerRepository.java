@@ -40,11 +40,10 @@ public interface ResellerRepository extends JpaRepository<Reseller, Long> {
 	public void softDelete(@Param("resId") Long resId);
 	
 	
+
 	@Modifying
-	@Query(value = "delete from  users_reseller where  user_id not in (:userIds);"
-			,nativeQuery = true)
-	public void removeUser(@Param("userIds") List<Long> resId);
-	
+	@Query(value = "DELETE FROM  users_reseller WHERE  user_id IN :userids ;", nativeQuery = true)
+	public void removeUser(@Param("userids") List<Long> userIds);
 	
 	public Reseller findByEmail(String email);
 	

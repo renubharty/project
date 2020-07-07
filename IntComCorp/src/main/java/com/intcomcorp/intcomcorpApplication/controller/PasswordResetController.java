@@ -79,7 +79,7 @@ public class PasswordResetController {
 		User user = token.getUser();
 		String updatedPassword = passwordEncoder.encode(form.getPassword());
 		userService.updatePassword(updatedPassword, user.getId());
-		tokenService.delete(token);
+	//	tokenService.delete(token);
 
 		return "redirect:/login?resetSuccess";
 	}

@@ -11,10 +11,8 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
 			<ul class="navbar-nav mr-auto nav nav-tabs" id="nav-tab"
 				role="tablist">
-
 				<li sec:authorize="hasAnyRole('ROLE_SUPERADMIN','ROLE_RESELLER')" class="nav-item nav-link"><a id="nav-home-tab"
 					data-toggle="tab" href="#nav-home" role="tab"
 					aria-controls="nav-home" aria-selected="true"> Monitoring </a></li>
@@ -185,7 +183,7 @@
 						<li class="nav-item"><a class="nav-link active"
 							th:href="@{/}">Dashboard</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="@{/user/registration}">Customer</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">View Customer</a>
+						
 								
 					</ul>
 

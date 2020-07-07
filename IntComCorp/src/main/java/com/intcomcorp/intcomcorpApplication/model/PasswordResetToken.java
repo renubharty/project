@@ -3,6 +3,7 @@ package com.intcomcorp.intcomcorpApplication.model;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +30,7 @@ public class PasswordResetToken {
 	@Column(nullable = false, unique = true)
 	private String token;
 
-	@OneToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@OneToOne(targetEntity = User.class, fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
 	@JoinColumn(nullable = false, name = "user_id")
 	private User user;
 

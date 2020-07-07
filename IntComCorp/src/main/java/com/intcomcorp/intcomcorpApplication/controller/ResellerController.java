@@ -2,6 +2,7 @@ package com.intcomcorp.intcomcorpApplication.controller;
 
 import static com.intcomcorp.intcomcorpApplication.utils.Util.currentUserName;
 import static com.intcomcorp.intcomcorpApplication.utils.Util.hasRole;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.intcomcorp.intcomcorpApplication.dto.EmailDto;
 import com.intcomcorp.intcomcorpApplication.dto.PasswordResetDto;
@@ -128,7 +130,8 @@ public class ResellerController {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
 		if (hasRole("ROLE_RESELLER")) {
 			model.addAttribute("resellerList",
-					resellerService.findByEmail(currentUserName(request.getUserPrincipal())));
+					resellerService.findByEmailId(currentUserName(request.getUserPrincipal())));
+			System.out.println("ROLE_RESELLER" + resellerService.findByEmail(currentUserName(request.getUserPrincipal())));
 		} else {
 			List<Reseller> resList = resellerService.getAll();
 			model.addAttribute("resellerList", resList);
@@ -148,21 +151,32 @@ public class ResellerController {
 		model.addAttribute("userList", reseller.getUserList());
 		return "administration/reseller-update";
 	}
-
+    
 	@PostMapping("/update/{id}")
-	public String updateReseller(@ModelAttribute("reseller") Reseller reseller, @PathVariable("id") Long id,
-			Model model, BindingResult result, HttpServletRequest request) {
+	public String updateReseller(Model model,@ModelAttribute("reseller")  @Valid Reseller reseller, BindingResult result,@PathVariable("id") Long id,
+			 HttpServletRequest request) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+		if (result.hasErrors()) {
+			/*
+			 * Reseller reseller1 = resellerService.findById(id);
+			 * model.addAttribute("reseller", reseller1);
+			 * reseller.getUserList().forEach(user -> {
+			 * reseller.getUserIds().add(user.getId()); }); model.addAttribute("userList",
+			 * reseller.getUserList());
+			 */
+			return showUpdateReseller(model,id,request);
+		}
 		reseller.setId(id);
 		if (!resellerService.updateReseller(reseller)) {
 			return showUpdateReseller(model, id, request);
 		}
 		return "redirect:/reseller/get";
 	}
-
-	@GetMapping("/delete/{id}")
-	public String deleteReseller(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
+ 
+	@GetMapping("/delete")
+	public String deleteReseller(@RequestParam("id") Long id,@RequestParam("email") String email, Model model, HttpServletRequest request) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+		if (userService.deleteByEmail(email))
 		resellerService.deleteResById(id);
 		List<Reseller> resList = resellerService.getAll();
 		model.addAttribute("resellerList", resList);

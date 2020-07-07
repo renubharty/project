@@ -10,7 +10,6 @@ import com.intcomcorp.intcomcorpApplication.model.Inventory;
 public interface InventoryRepository extends JpaRepository<Inventory, Long>{
 
 	
-	
 	@Modifying
 	@Query(value = "INSERT INTO  reseller_inventory (reseller_id,inventory_id) VALUES (:resId,:invId)"
 			,nativeQuery = true)

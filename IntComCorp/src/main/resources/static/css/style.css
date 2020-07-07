@@ -3,7 +3,7 @@
 	;
 
 body {
-	background: #eee;
+	background: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 }
@@ -113,7 +113,7 @@ nav.bg-custom {
 	background: #ffffff;
 	top: 0px;
 	width: 100%;
-	z-index: 99;
+	z-index: 99999;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 	padding: 0px;
 	position: fixed;
@@ -250,8 +250,9 @@ sidebar ul li a.active, sidebar ul li a:hover {
 
 .tab-content {
 	position: fixed;
-	top: 57px;
+	top: 34px;
 	width: 100%;
+	z-index:999;
 }
 
 .right-section {
@@ -297,7 +298,7 @@ sidebar ul li a.active, sidebar ul li a:hover {
 
 .disaster-section li {
 	display: inline-block;
-	margin-right: 35px;
+	margin-right: 25px;
 }
 
 .nav-tabs.navbar-nav {
@@ -310,7 +311,7 @@ sidebar ul li a.active, sidebar ul li a:hover {
 
 .disaster-section.category li {
 	display: inline-block;
-	margin-right: 56px;
+	margin-right: 46px;
 }
 
 .light-sub-heading {
@@ -906,6 +907,13 @@ table.dataTable tbody th, table.dataTable tbody td {
 }
 
 @media ( max-width :767px) {
+	
+	.disaster-section li {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-left: 6px;
+}
 	.cust-calendar {
 		right: 17px;
 	}

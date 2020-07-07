@@ -36,18 +36,19 @@ public class Inventory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@NotBlank
+	@NotBlank(message = "Select inventory type")
 	private String type;
-	@NotBlank
+	@NotBlank(message = " name is not empty")
 	private String name;
-	@NotBlank
+	@NotBlank(message = "mac address  is not empty")
 	@Column(name = "mac_address")
 	private String macaddress;
-	@NotBlank
+	@NotBlank(message = "model is not empty")
 	private String model;
-	@NotBlank
+	@NotBlank(message = "serial no  is not empty")
 	@Column(name = "serial_number")
 	private String serialNumber;
+    
 	@Transient
 	private Long resId;
 	

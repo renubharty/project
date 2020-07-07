@@ -28,6 +28,7 @@
 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
 <link th:href="@{/css/main.css}" rel="stylesheet">
 <link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -35,7 +36,7 @@
 
 	<br>
 
-	<div class="container">
+	<div class="container"> 
 	<div class="inner-box">
 		<div class="row">
 			<div class="col-md-6 center">
@@ -43,9 +44,10 @@
 				<h1 class="head-txt">Reseller</h1>
 				<form th:action="@{/reseller/add}" th:object="${reseller}"
 					method="post">
-					<h2>
+				<!-- 	<h2>
 						<span class="alert-success" th:utext="${successMsg}"></span>
-					</h2>
+					</h2> -->
+					<div class="alert-success" th:utext="${successMsg}"></div>
 					<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
 						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
 						error</p>
@@ -85,7 +87,7 @@
 					<div class="form-group">
 						<label for="city" class="col-form-label">City</label> <input
 							type="text" id="City" class="form-control" th:field="*{city}"
-							placeholder="city" /><span th:if="${#fields.hasErrors('city')}"
+							placeholder="City" /><span th:if="${#fields.hasErrors('city')}"
 							th:errors="*{city}" class="text-danger"></span>
 
 					</div>
@@ -93,7 +95,7 @@
 					<div class="form-group">
 						<label for="state" class="col-form-label">State</label> <input
 							type="text" id="State" class="form-control" th:field="*{state}"
-							placeholder="state" /><span
+							placeholder="State" /><span
 							th:if="${#fields.hasErrors('state')}" th:errors="*{state}"
 							class="text-danger"></span>
 
@@ -102,17 +104,11 @@
 					<div class="form-group">
 						<label for="zipcode" class="col-form-label">Zip Code</label> <input
 							type="text" id="zipcode" class="form-control"
-							th:field="*{zipcode}" placeholder="zipcode" /><span
+							th:field="*{zipcode}" placeholder="Zipcode" /><span
 							th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}"
 							class="text-danger"></span>
 
 					</div>
-
-					
-
-
-
-					
 
 
 						<div class="form-group">

@@ -44,16 +44,16 @@ public class HostController {
 
 	@Autowired
 	HostService hostService;
-    
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Autowired
 	private TemplateService templateService;
-	
+
 	@Autowired
 	private GroupsService groupService;
-	
+
 	Map<Integer, Host> zabbixHostMap;
 
 	@PostConstruct
@@ -65,17 +65,17 @@ public class HostController {
 	public UserHostsDto getUserHostsDto() {
 		return new UserHostsDto();
 	}
+
 	@ModelAttribute("template")
 	public Templates getTemplate() {
 		return new Templates();
 	}
-	
-	
+
 	@ModelAttribute("device")
 	public DeviceDto getDevice() {
 		return new DeviceDto();
 	}
-	
+
 	@GetMapping("show")
 	public String showHostAssign(Model model, Long id) {
 		/**
@@ -124,26 +124,26 @@ public class HostController {
 	}
 
 	@GetMapping("/get")
-	public String getHostByCustomer(Model model,HttpServletRequest request,Principal principal) {
-        
+	public String getHostByCustomer(Model model, HttpServletRequest request, Principal principal) {
+
 		if (hasRole("ROLE_USER")) {
 			model.addAttribute("hostListByCustomer", userService.getLoggedInUserHost(principal));
-		}else {
+		} else {
 			model.addAttribute("hostListByCustomer", userService.getAllCustomerByHost());
 		}
-		
+
 		return "hosts/host-list";
 	}
 
 	@GetMapping("/edit/{id}")
 	public String showUpdateHost(@PathVariable("id") Long id, @ModelAttribute("userHostDto") UserHostsDto userHostDto,
 			Model model) {
-        
+
 		zabbixHostMap = hostService.getAllZabbixHost(true);
 		List<Host> filteredHosts = new ArrayList<>(zabbixHostMap.values());
 		User user = userService.getUserById(id);
 		List<String> hostIds = new ArrayList<String>();
-               
+
 		user.getUsersHostList().forEach(host -> {
 			filteredHosts.add(host);
 			hostIds.add(String.valueOf(host.getHostId()));
@@ -154,16 +154,15 @@ public class HostController {
 
 		model.addAttribute("customerList", user);
 
-		
 		model.addAttribute("hostList", filteredHosts);
 		return "hosts/update-hosts";
 	}
 
 	@PostMapping("/update/{customerId}")
 	public String updateHost(@ModelAttribute("userHostDto") UserHostsDto userHostDto,
-			@PathVariable("customerId") Long customerId, Model model,HttpServletRequest request,Principal principal) {
+			@PathVariable("customerId") Long customerId, Model model, HttpServletRequest request, Principal principal) {
 		User user = userService.getUserById(customerId);
-		
+
 		List<Host> hostList = new ArrayList<>();
 		hostService.deleteAllUserHosts(customerId);
 		userHostDto.getHostIds().forEach(hostId -> {
@@ -188,17 +187,16 @@ public class HostController {
 			return "hosts/update-hosts";
 		}
 
-		return getHostByCustomer(model,request,principal);
+		return getHostByCustomer(model, request, principal);
 
 	}
-	
-	
+
 	@GetMapping
-	public String getHosts(Model model, HttpServletRequest request,@ModelAttribute("device") DeviceDto device) {
-		 log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-		 device.getTemplatesList().addAll(templateService.findAllTemplates());
-		 device.getGroupsList().addAll(groupService.findAllGroups());
-		
+	public String getHosts(Model model, HttpServletRequest request, @ModelAttribute("device") DeviceDto device) {
+		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
+		device.getTemplatesList().addAll(templateService.findAllTemplates());
+		device.getGroupsList().addAll(groupService.findAllGroups());
+
 		return "hosts/hosts";
 	}
 

@@ -37,8 +37,10 @@ $(document).ready(
 					dataType : 'json',
 					success : function(result) {
 						alert("Host Created" + result);
+						$('#createhost').trigger("reset");
+						$('#groupid').val(0);
+						$('#templateid').val(0);
 						var response = result.jsonObject;
-						console.log(response);
 						var resultArray = [];
 						resultArray = response.data;
 						console.log(resultArray)
@@ -50,6 +52,7 @@ $(document).ready(
 						}
 						console.log("response: ", result);
 						$('#location').append(trHTML);
+						
 
 					},
 					error : function(e) {
@@ -59,5 +62,7 @@ $(document).ready(
 				});
 
 			}
+			
+			
 
 		})

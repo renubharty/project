@@ -626,5 +626,10 @@ a.btn.btn-primary.round-btn-clc {
 .center{
 	margin-right: auto;
     margin-left: auto;
+    margin-top:118px;
+}
+.gap{
+	
+    margin: 34px;
 }
 

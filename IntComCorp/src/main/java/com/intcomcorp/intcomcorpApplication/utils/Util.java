@@ -2,10 +2,8 @@ package com.intcomcorp.intcomcorpApplication.utils;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -29,11 +27,17 @@ public class Util {
 	}
 
 	public static String calculatePeriod(String clock) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDate olddate = LocalDate.parse(parseDate(clock), formatter);
-		Period period = Period.between(olddate, java.time.LocalDate.now());
-	
-		return period.getMonths() + "m " + period.getDays() + " d";
+		
+	Date endDate = new Date(Long.parseLong(clock)*1000);
+    Date startDate = new Date();
+    long diffInMilliSec = startDate.getTime() - endDate.getTime() ;
+    final   long MINUTES = TimeUnit.MILLISECONDS.toMinutes(diffInMilliSec) % 60;
+    final   long HOURS = TimeUnit.MILLISECONDS.toHours(diffInMilliSec) % 24;
+    final   long TOTALDAYS = TimeUnit.MILLISECONDS.toDays(diffInMilliSec) % 365;
+    final   long MONTHS = TOTALDAYS/30;
+    final   long DAYS = TOTALDAYS%30;
+	 String formattedDate = MONTHS +"m "+ DAYS +"d " + HOURS+"h ";
+		return formattedDate;
 
 	}
 }

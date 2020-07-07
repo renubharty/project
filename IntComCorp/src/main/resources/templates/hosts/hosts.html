@@ -74,7 +74,7 @@
 												<label for="groupid" class="col-sm-2 col-form-label">
 													Group</label> <select class="form-control selectpicker"
 													th:field="${device.groupId}" id="groupid" size="10">
-													<option value="0" disabled="disabled">Select Group</option>
+													<option value="0" disabled selected>Select Group</option>
 													<option th:each="group : ${device.groupsList}"
 														th:value="${group.groupid}" th:text="${group.name}"></option>
 												</select> <span th:if="${#fields.hasErrors('groupId')}"
@@ -171,7 +171,7 @@
 												<label for="templateid" class="col-sm-2 col-form-label">
 													Template</label> <select class="form-control selectpicker"
 													th:field="${device.tmpId}" id="templateid" size="10">
-													<option value="0" disabled="disabled">Select
+													<option value="0">Select
 														Template</option>
 													<option th:each="template : ${device.templatesList}"
 														th:value="${template.hostid}" th:text="${template.name}"></option>

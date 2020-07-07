@@ -71,7 +71,11 @@ public class InventoryController {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
 
 		
-		  if (result.hasErrors()) { return showinventory(model, request); }
+		  if (result.hasErrors()) { 
+			  List<Reseller> resellerList = resellerService.getAll();
+			  model.addAttribute("resellerList", resellerList);
+			  return "inventory/inventory";
+			 }
 		  Reseller res = resellerService.findById(inventory.getResId());
 		  inventory.setReseller(res);
 		
@@ -133,10 +137,14 @@ public class InventoryController {
 	}
 
 	@PostMapping("/update/{id}")
-	public String updateInventory(HttpServletRequest request, Model model,
-			@ModelAttribute("inventory") @Valid Inventory inventory, @PathVariable("id") Long id) {
+	public String updateInventory( Model model,
+			@ModelAttribute("inventory") @Valid Inventory inventory,BindingResult result, @PathVariable("id") Long id,HttpServletRequest request) {
 		log.info(messageSource.getMessage(Constants.NEW_REQ, new Object[] { request.getRequestURI() }, Locale.US));
-
+		if (result.hasErrors()) {
+			List<Reseller> resellerList = resellerService.getAll();
+			model.addAttribute("resellerList", resellerList);
+			return "/inventory/inventory-update";
+		}
 		Reseller res = resellerService.findById(inventory.getResId());
 		inventory.setReseller(res);
 		inventoryServicce.createInventory(inventory);

@@ -1,6 +1,5 @@
 
 package com.intcomcorp.intcomcorpApplication.controller;
-
 import java.security.Principal;
 import java.util.Locale;
 
@@ -19,12 +18,9 @@ import com.intcomcorp.intcomcorpApplication.utils.Constants;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @Controller
-
 public class ProblemController {
-
 	
 	@Autowired
 	private MessageSource messageSource;

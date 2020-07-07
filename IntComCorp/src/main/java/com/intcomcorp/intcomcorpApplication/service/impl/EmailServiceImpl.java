@@ -69,6 +69,8 @@ public class EmailServiceImpl implements EmailService {
 			props.put("mail.smtp.auth", auth);
 			props.put("mail.smtp.starttls.enable", enable);
 			props.put("mail.debug", "true");
+			props.put("mail.smtp.socketFactory.class", 
+	                "javax.net.ssl.SSLSocketFactory");
 			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(emailDto.getFrom(), password);

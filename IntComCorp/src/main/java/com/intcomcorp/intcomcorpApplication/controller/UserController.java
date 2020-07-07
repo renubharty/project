@@ -85,6 +85,8 @@ public class UserController {
 		}
 
 		if (result.hasErrors()) {
+			List<Reseller> resellerList = resellerService.getAll();
+			model.addAttribute("resellerList", resellerList);
 			return "registration/registration";
 		}
 

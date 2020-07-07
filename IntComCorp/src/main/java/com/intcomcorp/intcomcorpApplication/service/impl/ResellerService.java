@@ -1,5 +1,6 @@
 package com.intcomcorp.intcomcorpApplication.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,13 +65,34 @@ public class ResellerService {
 		return reseller;
 	}
 
+	/*
+	 * public boolean updateReseller(Reseller reseller) {
+	 * log.info("ResellerService updateReseller begin"); boolean isUpdated = false;
+	 * // Remove Reseller's User if Any try { if (!reseller.getUserIds().isEmpty())
+	 * removeUser(reseller.getUserIds()); resellerRepository.save(reseller);
+	 * isUpdated = true; } catch (Exception e) { isUpdated = false; log.
+	 * error("Error in ResellerService method updateReseller while Updating Reseller"
+	 * , e); }
+	 * log.info("ResellerService updateReseller finish, Updated successfully");
+	 * return isUpdated;
+	 * 
+	 * }
+	 */
+	
 	public boolean updateReseller(Reseller reseller) {
 		log.info("ResellerService updateReseller begin");
 		boolean isUpdated = false;
+		List<Long> existingUserIds = new ArrayList<>();
 		// Remove Reseller's User if Any
 		try {
-			if (!reseller.getUserIds().isEmpty())
-				removeUser(reseller.getUserIds());
+			Reseller res = findById(reseller.getId());
+			 res.getUserList().forEach(uid ->{
+				existingUserIds.add(uid.getId());
+			});
+			List<Long> newUserids = reseller.getUserIds();
+			existingUserIds.removeAll(newUserids);
+			if (!existingUserIds.isEmpty())
+				removeUser(existingUserIds);
 			resellerRepository.save(reseller);
 			isUpdated = true;
 		} catch (Exception e) {
@@ -91,7 +113,8 @@ public class ResellerService {
 	}
 
 	public void deleteResById(Long resellerId) {
-		resellerRepository.softDelete(resellerId);
+		resellerRepository.deleteById(resellerId);
+		//resellerRepository.softDelete(resellerId);
 
 	}
 
@@ -124,5 +147,20 @@ public class ResellerService {
 		log.info("ResellerService findByEmail finish");
 		return isAvaiable;
 	}
+	
+	public Reseller findByEmailId(String email) {
+		log.info("ResellerService findByEmail begin");
+		
+		Reseller exist = null;
+			try {
+				 exist = resellerRepository.findByEmail(email);
+			} catch (Exception e) {
+				log.error("Error occured while finding Reseller email", e);
+				
+			}
+			
+			log.info("ResellerService findByEmail finish");
+			return exist;
+		}
 
 }

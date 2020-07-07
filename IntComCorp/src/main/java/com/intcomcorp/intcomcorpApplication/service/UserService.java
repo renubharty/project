@@ -23,4 +23,6 @@ public interface UserService extends UserDetailsService {
 	 User saveReseller(Reseller reseller);
 	 
 	 public Set<User> getLoggedInUserHost(Principal principal);
+	 
+	 public boolean deleteByEmail(String email);
 }

@@ -34,20 +34,20 @@ public class Reseller {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@NotEmpty
+	@NotEmpty(message = "name is not empty")
 	private String name;
-	@NotEmpty
+	@NotEmpty(message = "address  is not empty")
 	private String address;
-	@NotEmpty
+	@NotEmpty(message = "city  is not empty")
 	private String city;
-	@NotEmpty
+	@NotEmpty(message = "state  is not empty")
 	private String state;
-	@NotEmpty
+	@NotEmpty(message = "zip  is not empty")
 	private String zipcode;
-	@NotEmpty
+	@NotEmpty(message = "phone  is not empty")
 	private String phone;
 	@Email(message = "Email shoul be in proper format")
-	@NotEmpty
+	@NotEmpty(message = "email  is not empty")
 	private String email;
 	@Column(length = 32 ,name = "active")
 	private boolean isActive = true;

@@ -2,6 +2,7 @@ package com.intcomcorp.intcomcorpApplication.dto;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import com.intcomcorp.intcomcorpApplication.model.Reseller;
@@ -16,33 +17,33 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserRegistrationDto {
 
-	@NotEmpty
+	@NotEmpty(message = "First name is not empty")
 	private String firstName;
 
-	@NotEmpty
+	@NotEmpty(message = "last name is not empty")
 	private String lastName;
     
-	@NotEmpty
+	@NotEmpty(message = "company  is not empty")
 	private String company;
-	@NotEmpty
+	@NotEmpty(message = "phone  is not empty")
 	private String phone;
-	@NotEmpty
+	@NotEmpty(message = "city is not empty")
 	private String city;
-	@NotEmpty
+	@NotEmpty(message = "zip  is not empty")
 	private String zip;
 	
 	
 	private String password;
 
-	@Email
-	@NotEmpty
+	@Email(message = "email should be in proper format")
+	@NotEmpty(message = "email  is not empty")
 	private String email;
 
 	
 
 	@AssertTrue
 	private Boolean terms;
-	
+	@NotBlank(message = "Select Reseller")
     private String resId;
 	
 	private Reseller reseller;

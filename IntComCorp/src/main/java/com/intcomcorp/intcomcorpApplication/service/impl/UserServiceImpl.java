@@ -67,16 +67,15 @@ public class UserServiceImpl implements UserService {
 				mapRolesToAuthorities(user.getRoles()));
 	}
 
-	     @Override
-	    public void updatePassword(String password, Long userId) {
-	        userRepository.updatePassword(password, userId);
-	    }
+	@Override
+	public void updatePassword(String password, Long userId) {
+		userRepository.updatePassword(password, userId);
+	}
 
-	
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
-	
+
 	public List<User> getAllCustomer() {
 		List<User> custList = userRepository.findAll();
 		List<User> filteredList = new ArrayList<User>();
@@ -91,8 +90,7 @@ public class UserServiceImpl implements UserService {
 
 		return filteredList;
 	}
-	
-	
+
 	public List<User> getAllCustomerByHost() {
 		List<User> custList = userRepository.findAll();
 		List<User> filteredList = new ArrayList<User>();
@@ -105,66 +103,74 @@ public class UserServiceImpl implements UserService {
 
 		return filteredList;
 	}
-	
-	
+
 	public User getUserById(Long id) {
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
 		return user;
 
 	}
-	
+
 	public boolean updateUserHosts(User user) {
-		
+
 		try {
 			userRepository.save(user);
 			return true;
 		} catch (Exception e) {
-			
+
 			return false;
 		}
-		
-		
+
 	}
-	
-public User  saveReseller(Reseller reseller) {
-		
+
+	public User saveReseller(Reseller reseller) {
+
 		User user = new User();
 		user.setFirstName(reseller.getName());
 		user.setEmail(reseller.getEmail());
 		user.setPassword(passwordEncoder.encode(reseller.getPassword()));
-		System.out.println(" reseller.getPassword() " +reseller.getPassword());
+		System.out.println(" reseller.getPassword() " + reseller.getPassword());
 		user.setRoles(Arrays.asList(new Role("ROLE_RESELLER")));
 		try {
-			userRepository.save(user);	
+			userRepository.save(user);
 		} catch (Exception e) {
 			log.error("Error while saving in user table", e);
 		}
 		return user;
-	    
+
 	}
 
-public Set<User> getLoggedInUserHost(Principal principal) {
-	List<User> custList = userRepository.findAll();
-	List<User> filteredList = new ArrayList<User>();
-	Set<User> loggedInUserList = new HashSet<User>();
-	custList.forEach(cust -> {
+	public Set<User> getLoggedInUserHost(Principal principal) {
+		List<User> custList = userRepository.findAll();
+		List<User> filteredList = new ArrayList<User>();
+		Set<User> loggedInUserList = new HashSet<User>();
+		custList.forEach(cust -> {
 
-		if (!cust.getUsersHostList().isEmpty()) {
-			filteredList.add(cust);
-		}
-		filteredList.forEach(customer ->{
-			if (customer.getEmail().equalsIgnoreCase(Util.currentUserName(principal))) {
-				loggedInUserList.add(customer);
+			if (!cust.getUsersHostList().isEmpty()) {
+				filteredList.add(cust);
 			}
+			filteredList.forEach(customer -> {
+				if (customer.getEmail().equalsIgnoreCase(Util.currentUserName(principal))) {
+					loggedInUserList.add(customer);
+				}
+			});
 		});
-	});
 
-	return loggedInUserList;
-}
+		return loggedInUserList;
 
+	}
 
-
-
+	public boolean deleteByEmail(String email) {
+		log.info("method deleteByEmail satrt");
+		boolean isDeleted = false;
+		try {
+			userRepository.deleteByEmail(email);
+			isDeleted = true;
+		} catch (Exception e) {
+			log.error("Error while deleting in user table", e);
+			isDeleted = false;
+		}
+		return isDeleted;
+	}
 
 }

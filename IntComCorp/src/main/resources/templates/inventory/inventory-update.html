@@ -21,13 +21,12 @@
 
 <!-- CSS   
   ================================================== -->
+ 
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
 <link th:href="@{/css/main.css}" rel="stylesheet">
 <link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
-
-
-
+<link th:href="@{/css/style.css}" rel="stylesheet">
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -126,13 +125,15 @@
 		</div>
 	</div>
 
+  
 	<!-- All Javascript include here for fast loading of page -->
-	<script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script>
-	<script type="text/javascript" src="/js/popper.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/custom.js"></script>
-	<script type="text/javascript" src="/js/common.js"></script>
+	<script th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/common.js}"></script>
 	<script th:src="@{/js/bootstrap-select.min.js}"></script>
+	
 
 </body>
 </html>
